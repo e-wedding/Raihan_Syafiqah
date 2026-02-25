@@ -451,6 +451,28 @@
             border-radius: 10px;
         }
 
+        /* --- Preloader Styles --- */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-ivory);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease, visibility 1s;
+        }
+
+        .preloader-logo {
+            animation: pulse-gold 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-gold {
+            0%, 100% { opacity: 0.4; transform: scale(0.95); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
         /* --- Smooth Parallax Effect --- */
         .parallax {
             transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -496,6 +518,14 @@
     </style>
 </head>
 <body>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="Picture/Pengantin/Syafiqah-Raihan.svg" alt="S&R" class="w-24 h-auto preloader-logo mb-4 opacity-80">
+        <p class="font-cinzel text-[0.6rem] tracking-[0.4em] uppercase text-[var(--accent-gold)] animate-pulse">
+            Memuatkan Kenangan...
+        </p>
+    </div>
 
     <div id="sparkle-container"></div>
 
@@ -813,9 +843,51 @@
     </div>
 
     <script>
+        // Music variables
+        const music = document.getElementById('weddingMusic');
+        const musicBtn = document.getElementById('musicToggle');
+        const musicIcon = document.getElementById('musicIcon');
+
+        // Tetapkan volum awal (0.3 = 30%)
+        if (music) {
+            music.volume = 0.3;
+        }
+
+        // Fungsi Fade-in Muzik
+        function fadeInMusic(audio, targetVolume, duration) {
+            audio.volume = 0;
+            audio.play().catch(error => console.log("Autoplay blocked:", error));
+            
+            const step = targetVolume / (duration / 50);
+            const fadeInterval = setInterval(() => {
+                if (audio.volume < targetVolume) {
+                    audio.volume = Math.min(targetVolume, audio.volume + step);
+                } else {
+                    clearInterval(fadeInterval);
+                }
+            }, 50);
+        }
+
+        // Preloader logic
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.visibility = 'hidden';
+                }, 1000);
+            }, 1500);
+        });
+
         function bukaUndangan() {
             const envelope = document.querySelector('.envelope-wrapper');
             envelope.classList.add('open');
+
+            // Muzik bermula dengan Fade-in (0 ke 0.3 dalam 3 saat)
+            if (music) {
+                fadeInMusic(music, 0.3, 3000);
+            }
+            musicBtn.style.display = 'flex';
 
             setTimeout(() => {
                 const container = document.getElementById('envelope-container');
@@ -834,6 +906,18 @@
                 }, 800);
 
             }, 1200);
+        }
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                musicIcon.classList.remove('fa-volume-mute');
+                musicIcon.classList.add('fa-music');
+            } else {
+                music.pause();
+                musicIcon.classList.remove('fa-music');
+                musicIcon.classList.add('fa-volume-mute');
+            }
         }
 
         function initScrollAnimations() {
@@ -1146,5 +1230,14 @@
             loadData();
         });
     </script>
+
+    <!-- Audio Background & Music Toggle -->
+    <audio id="weddingMusic" loop>
+        <source src="Picture/bgm.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="musicToggle" onclick="toggleMusic()" class="fixed bottom-6 right-6 z-[60] w-12 h-12 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-lg flex items-center justify-center text-[var(--accent-gold)] transition-all hover:scale-110 active:scale-95" style="display: none;">
+        <i id="musicIcon" class="fas fa-music"></i>
+    </button>
 </body>
 </html>
