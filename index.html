@@ -843,15 +843,24 @@
     </div>
 
     <script>
-        // Music variables
-        const music = document.getElementById('weddingMusic');
-        const musicBtn = document.getElementById('musicToggle');
-        const musicIcon = document.getElementById('musicIcon');
+        // Music variables - will be initialized after DOM loads
+        let music, musicBtn, musicIcon;
 
-        // Tetapkan volum awal (0.7 = 70%)
-        if (music) {
-            music.volume = 0.7;
+        // Initialize music elements when DOM is ready
+        function initMusic() {
+            music = document.getElementById('weddingMusic');
+            musicBtn = document.getElementById('musicToggle');
+            musicIcon = document.getElementById('musicIcon');
+
+            // Tetapkan volum awal (0.7 = 70%)
+            if (music) {
+                music.volume = 0.7;
+                console.log('Music initialized, volume set to 70%');
+            }
         }
+
+        // Initialize on DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', initMusic);
 
         // Fungsi Fade-in Muzik
         function fadeInMusic(audio, targetVolume, duration) {
@@ -1256,10 +1265,11 @@
             }
         });
 
-        // Muat senarai ucapan dan kenalan sebaik sahaja laman web dibuka
+        // Muat senarai ucapan dan kenalan serta muzik sebaik sahaja laman web dibuka
         document.addEventListener('DOMContentLoaded', () => {
             loadWishes();
             loadData();
+            initMusic();
         });
     </script>
 
