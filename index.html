@@ -114,6 +114,7 @@
             padding: 2.5rem;
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
 
         .content-card::before {
@@ -449,15 +450,6 @@
         .elegant-panel.gold-accent {
             background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.02) 100%);
             border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        /* Map embed */
-        .map-embed {
-            width: 100%;
-            height: 250px;
-            border: none;
-            border-radius: 24px;
-            margin-top: 1rem;
         }
 
         /* Custom Scrollbar untuk ruangan Buku Tetamu */
@@ -1232,7 +1224,13 @@
 
             } catch (error) {
                 console.error('Error loading contacts:', error);
-                // Containers will remain empty if there's an error
+                // Show error message in Utama container as fallback
+                const containerUtama = document.getElementById('container-utama');
+                if (containerUtama) {
+                    containerUtama.style.display = 'block';
+                    containerUtama.innerHTML = 
+                        '<p class="text-center text-xs italic col-span-full py-4" style="color:var(--text-charcoal-soft);">Maklumat kenalan tidak dapat dimuatkan.</p>';
+                }
             }
         }
 
@@ -1289,6 +1287,7 @@
             loadWishes();
             loadData();
             initMusic();
+            initParallax();
         });
     </script>
 
