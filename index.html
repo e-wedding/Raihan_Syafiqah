@@ -787,7 +787,9 @@
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 
-                const wishes = await response.json();
+                // --- PERUBAHAN PENTING DI SINI ---
+                const data = await response.json();
+                const wishes = data.wishes; // Ekstrak bahagian 'wishes' sahaja dari pangkalan data gabungan
 
                 container.innerHTML = ''; // Kosongkan loading spinner
 
