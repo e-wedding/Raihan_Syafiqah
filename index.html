@@ -357,17 +357,39 @@
             margin: 0 auto;
         }
 
-        /* --- REVEAL ANIMATION --- */
+        /* --- REVEAL ANIMATION (Lebih Premium) --- */
         .reveal-item {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1.2s ease-out, transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateY(20px);
+            filter: blur(5px);
+            transition: 
+                opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1), 
+                transform 1.5s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 1.5s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .reveal-item.active {
             opacity: 1;
             transform: translateY(0);
+            filter: blur(0);
         }
+
+        /* --- Kesan Popup Nama Pengantin --- */
+        .name-reveal {
+            opacity: 0;
+            transform: scale(0.95) translateY(10px);
+            transition: all 2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .active .name-reveal {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* Staggered delay untuk nama */
+        .delay-1 { transition-delay: 0.3s; }
+        .delay-2 { transition-delay: 0.8s; }
+        .delay-3 { transition-delay: 1.3s; }
 
         /* Decorative divider */
         .ornament-divider {
@@ -504,20 +526,20 @@
 
                 <!-- Couple Names -->
                 <div class="reveal-item my-20 flex flex-col items-center">
-                    
-                    <img src="Picture/Pengantin/Syafiqah.svg" alt="Pengantin Perempuan" class="w-20 md:w-28 mb-6">
-                    
-                    <h1 class="font-vibes text-6xl md:text-8xl text-center leading-none" style="color: var(--accent-gold);">
+
+                    <img src="Picture/Pengantin/Syafiqah.svg" alt="Pengantin Perempuan" class="w-20 md:w-28 mb-6 name-reveal delay-1">
+
+                    <h1 class="font-vibes text-6xl md:text-8xl text-center leading-none name-reveal delay-1" style="color: var(--accent-gold);">
                         Nur Syafiqah
                     </h1>
-                    
-                    <h2 class="font-cinzel text-xs md:text-sm tracking-[0.4em] my-10 text-center uppercase" style="color: var(--text-charcoal-light);">
+
+                    <h2 class="font-cinzel text-xs md:text-sm tracking-[0.4em] my-10 text-center uppercase name-reveal delay-2" style="color: var(--text-charcoal-light);">
                         Bersama Pasangannya
                     </h2>
 
-                    <img src="Picture/Pengantin/Raihan.svg" alt="Pengantin Lelaki" class="w-20 md:w-28 mb-6">
-                    
-                    <h1 class="font-vibes text-6xl md:text-8xl text-center leading-none" style="color: var(--accent-gold);">
+                    <img src="Picture/Pengantin/Raihan.svg" alt="Pengantin Lelaki" class="w-20 md:w-28 mb-6 name-reveal delay-3">
+
+                    <h1 class="font-vibes text-6xl md:text-8xl text-center leading-none name-reveal delay-3" style="color: var(--accent-gold);">
                         M. Raihan Rozalihan
                     </h1>
                 </div>
@@ -765,6 +787,26 @@
             document.querySelectorAll('.reveal-item').forEach(item => observer.observe(item));
         }
 
+        // Fungsi untuk animasi nombor berpusing (Odometer effect)
+        function animateValue(id, start, end, duration) {
+            if (start === end) return;
+            const obj = document.getElementById(id);
+            const range = end - start;
+            let current = start;
+            const increment = end > start ? 1 : -1;
+            const stepTime = Math.abs(Math.floor(duration / range));
+            
+            const timer = setInterval(function() {
+                current += increment;
+                obj.innerHTML = current < 10 ? '0' + current : current;
+                if (current == end) {
+                    clearInterval(timer);
+                }
+            }, stepTime);
+        }
+
+        let countdownStarted = false;
+
         function startCountdown() {
             // Updated to May 30, 2026
             const countDownDate = new Date("May 30, 2026 10:00:00").getTime();
@@ -778,10 +820,19 @@
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                document.getElementById("days").innerHTML = days < 10 ? '0'+days : days;
-                document.getElementById("hours").innerHTML = hours < 10 ? '0'+hours : hours;
-                document.getElementById("mins").innerHTML = minutes < 10 ? '0'+minutes : minutes;
-                document.getElementById("secs").innerHTML = seconds < 10 ? '0'+seconds : seconds;
+                // Jika baru pertama kali load, buat animasi rolling
+                if (!countdownStarted) {
+                    animateValue("days", 0, days, 1500);
+                    animateValue("hours", 0, hours, 1500);
+                    animateValue("mins", 0, minutes, 1500);
+                    animateValue("secs", 0, seconds, 1500);
+                    countdownStarted = true;
+                } else {
+                    document.getElementById("days").innerHTML = days < 10 ? '0'+days : days;
+                    document.getElementById("hours").innerHTML = hours < 10 ? '0'+hours : hours;
+                    document.getElementById("mins").innerHTML = minutes < 10 ? '0'+minutes : minutes;
+                    document.getElementById("secs").innerHTML = seconds < 10 ? '0'+seconds : seconds;
+                }
 
                 if (distance < 0) {
                     clearInterval(x);
