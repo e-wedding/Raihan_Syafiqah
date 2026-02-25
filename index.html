@@ -855,17 +855,34 @@
 
         // Fungsi Fade-in Muzik
         function fadeInMusic(audio, targetVolume, duration) {
-            audio.volume = 0;
-            audio.play().catch(error => console.log("Autoplay blocked:", error));
+            if (!audio) {
+                console.error('Audio element is null');
+                return;
+            }
             
-            const step = targetVolume / (duration / 50);
-            const fadeInterval = setInterval(() => {
-                if (audio.volume < targetVolume) {
-                    audio.volume = Math.min(targetVolume, audio.volume + step);
-                } else {
-                    clearInterval(fadeInterval);
-                }
-            }, 50);
+            audio.volume = 0;
+            const playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    console.log('Music started playing successfully');
+                    // Fade in logic
+                    const step = targetVolume / (duration / 50);
+                    const fadeInterval = setInterval(() => {
+                        if (audio.volume < targetVolume) {
+                            audio.volume = Math.min(targetVolume, audio.volume + step);
+                            console.log('Current volume:', audio.volume);
+                        } else {
+                            clearInterval(fadeInterval);
+                            console.log('Volume fade complete');
+                        }
+                    }, 50);
+                })
+                .catch(error => {
+                    console.error("Autoplay blocked:", error);
+                    console.log('User must interact with page first');
+                });
+            }
         }
 
         // Preloader logic
@@ -883,9 +900,16 @@
             const envelope = document.querySelector('.envelope-wrapper');
             envelope.classList.add('open');
 
+            console.log('Buka Undangan clicked');
+            console.log('Music element:', music);
+            console.log('Music button:', musicBtn);
+
             // Muzik bermula dengan Fade-in (0 ke 0.7 dalam 3 saat)
             if (music) {
+                console.log('Starting music fade-in...');
                 fadeInMusic(music, 0.7, 3000);
+            } else {
+                console.error('Music element not found!');
             }
             if (musicBtn) {
                 musicBtn.style.display = 'flex';
