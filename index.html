@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Majlis Perkahwinan - Syafiqah & Raihan</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            /* Islamic Minimalist - Warm Ivory Palette */
+            --bg-ivory: #FDFBF7;
+            --bg-ivory-dark: #F5F0E6;
+            --text-charcoal: #2B2B2B;
+            --text-charcoal-light: #4A4A4A;
+            --text-charcoal-soft: #6B6B6B;
+            --accent-gold: #D4AF37;
+            --accent-gold-light: #E8C547;
+            --accent-olive: #6B7B5F;
+            --border-soft: rgba(43, 43, 43, 0.1);
+            --shadow-soft: rgba(43, 43, 43, 0.08);
+            --shadow-medium: rgba(43, 43, 43, 0.12);
+            
+            /* Glassmorphism for entrance */
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --blur-strength: 20px;
+        }
+
+        body {
+            font-family: 'Libre Baskerville', serif;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-ivory);
+            min-height: 100vh;
+            color: var(--text-charcoal);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Background decorative pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(107, 123, 95, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Tipografi */
+        .font-playfair { font-family: 'Libre Baskerville', serif; }
+        .font-cinzel { font-family: 'Libre Baskerville', serif; }
+        .font-vibes { font-family: 'Great Vibes', cursive; }
+        .font-amiri { font-family: 'Amiri', serif; }
+        .font-montserrat { font-family: 'Libre Baskerville', serif; }
+
+        /* --- MAIN CONTENT CARD - Modern Mobile UI --- */
+        .content-card {
+            background: #ffffff;
+            border-radius: 40px;
+            box-shadow:
+                0 12px 48px rgba(43, 43, 43, 0.06),
+                0 2px 8px rgba(43, 43, 43, 0.04);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            border: none;
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        }
+
+        /* Decorative corner ornaments */
+        .corner-ornament {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 1px solid var(--accent-gold);
+            opacity: 0.3;
+        }
+
+        .corner-ornament.top-left {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-ornament.top-right {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-ornament.bottom-left {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .corner-ornament.bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+
+        /* --- GLASS BUTTON (for entrance) --- */
+        .glass-button {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: #ffffff;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+
+        .glass-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .glass-button:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+
+        /* --- ELEGANT BUTTON (for main content) --- */
+        .elegant-button {
+            background: var(--text-charcoal);
+            color: #ffffff;
+            border: none;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100px;
+            font-weight: 500;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .elegant-button:hover {
+            background: var(--accent-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--shadow-medium);
+        }
+
+        .elegant-button.outline {
+            background: rgba(43, 43, 43, 0.05);
+            color: var(--text-charcoal);
+            box-shadow: none;
+        }
+
+        .elegant-button.outline:hover {
+            background: rgba(43, 43, 43, 0.1);
+            color: var(--text-charcoal);
+            transform: scale(0.98);
+            box-shadow: none;
+        }
+
+        /* --- MODERN ENVELOPE ENTRANCE --- */
+        #envelope-container {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-ivory);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .envelope-wrapper:hover {
+            transform: translateY(-4px);
+        }
+
+        .envelope {
+            position: relative;
+            width: 320px;
+            height: 220px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 24px 48px rgba(43, 43, 43, 0.08);
+        }
+
+        .envelope-back {
+            position: absolute;
+            inset: 0;
+            background: #fdfdfd;
+            border-radius: 16px;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .card-inside {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            top: 20px;
+            background: var(--bg-ivory-dark);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 2;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        .envelope-front {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 160px solid #f9f9f9;
+            border-right: 160px solid #f9f9f9;
+            border-bottom: 120px solid #ffffff;
+            border-top: 100px solid transparent;
+            border-radius: 0 0 16px 16px;
+            z-index: 3;
+            filter: drop-shadow(0 -2px 6px rgba(0,0,0,0.02));
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 160px solid transparent;
+            border-right: 160px solid transparent;
+            border-top: 130px solid #ffffff;
+            transform-origin: top;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 4;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.03));
+        }
+
+        .wax-seal {
+            position: absolute;
+            top: 130px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 56px;
+            height: 56px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 16px rgba(212, 175, 55, 0.25);
+            transition: all 0.4s ease;
+        }
+
+        /* --- OPENING ANIMATIONS --- */
+        .envelope-wrapper.open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .envelope-wrapper.open .wax-seal {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0);
+        }
+
+        .envelope-wrapper.open .card-inside {
+            transform: translateY(-80px);
+            z-index: 5;
+        }
+
+        .tap-instruction {
+            transition: opacity 0.3s;
+        }
+        
+        .envelope-wrapper.open ~ .tap-instruction {
+            opacity: 0;
+        }
+
+        /* --- MAIN INTERIOR --- */
+        #main-interior {
+            display: none;
+            min-height: 100vh;
+            padding: 4rem 1.5rem;
+            background: var(--bg-ivory);
+        }
+
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* --- REVEAL ANIMATION --- */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s ease-out, transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Decorative divider */
+        .ornament-divider {
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .ornament-divider::before,
+        .ornament-divider::after {
+            content: '✦';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-gold);
+            font-size: 0.8rem;
+        }
+
+        .ornament-divider::before { left: 0; }
+        .ornament-divider::after { right: 0; }
+
+        /* Elegant inset panels - Material/iOS Style */
+        .elegant-panel {
+            background: var(--bg-ivory-dark);
+            border: none;
+            border-radius: 28px;
+            padding: 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+        }
+
+        .elegant-panel.gold-accent {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.06) 0%, rgba(212, 175, 55, 0.12) 100%);
+            border: none;
+        }
+
+        /* Map embed */
+        .map-embed {
+            width: 100%;
+            height: 250px;
+            border: none;
+            border-radius: 24px;
+            margin-top: 1rem;
+        }
+
+        /* Custom Scrollbar untuk ruangan Buku Tetamu */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.02);
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: var(--accent-gold);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="envelope-container">
+        <div class="envelope-wrapper" onclick="bukaUndangan()">
+            <div class="envelope">
+                <div class="envelope-back"></div>
+                
+                <div class="card-inside">
+                    <img src="Picture/Pengantin/Syafiqah-Raihan.svg" alt="Syafiqah & Raihan" class="w-20 md:w-24 mb-4 drop-shadow-sm opacity-80">
+                    <h2 class="font-vibes text-4xl text-[var(--text-charcoal)] mb-2">S & R</h2>
+                    <p class="font-cinzel text-xs tracking-[0.25em] text-[var(--text-charcoal-light)] uppercase">Walimatul Urus</p>
+                </div>
+                
+                <div class="envelope-front"></div>
+                <div class="envelope-flap"></div>
+                
+                <div class="wax-seal">
+                    <span class="font-vibes text-[1.3rem] text-white">Buka</span>
+                </div>
+            </div>
+        </div>
+        <p class="tap-instruction font-cinzel text-xs tracking-[0.3em] uppercase text-[var(--text-charcoal-light)] mt-12 animate-pulse">
+            Tekan Untuk Membuka
+        </p>
+    </div>
+
+    <div id="main-interior">
+        <div class="content-container">
+
+            <div class="content-card sm:p-12 md:p-16 mb-16">
+                <!-- Corner Ornaments -->
+                <div class="corner-ornament top-left"></div>
+                <div class="corner-ornament top-right"></div>
+                <div class="corner-ornament bottom-left"></div>
+                <div class="corner-ornament bottom-right"></div>
+
+                <!-- Bismillah -->
+                <div class="reveal-item text-center mb-8 md:mb-12 flex justify-center">
+                    <img src="Picture/Bismillah.svg" alt="Bismillah" class="w-48 md:w-64 h-auto mx-auto drop-shadow-sm">
+                </div>
+
+                <!-- Greeting -->
+                <div class="reveal-item text-center text-xs md:text-sm tracking-widest uppercase leading-loose mb-10 md:mb-14 font-light" style="color: var(--text-charcoal-light);">
+                    Assalamualaikum Warahmatullahi Wabarakatuh<br>
+                    & Salam Sejahtera
+                </div>
+
+                <!-- Parents Section -->
+                <div class="reveal-item text-center mb-16 md:mb-20">
+                    <p class="font-cinzel text-xs md:text-sm mb-6 uppercase tracking-[0.2em]" style="color: var(--accent-gold);">Kesyukuran Ke Hadrat Ilahi, Kami</p>
+
+                    <div class="flex flex-col items-center justify-center font-playfair text-xl md:text-2xl" style="color: var(--text-charcoal);">
+                        <div class="mb-1 uppercase tracking-widest font-semibold">Maslan</div>
+                        <div class="text-xs md:text-sm font-normal tracking-widest uppercase italic" style="color: var(--accent-gold);">Bin Tata</div>
+
+                        <div style="color: var(--accent-gold);" class="font-vibes text-4xl my-4">&</div>
+
+                        <div class="mb-1 uppercase tracking-widest font-semibold">Sharifah Noraine</div>
+                        <div class="text-xs md:text-sm font-normal tracking-widest uppercase italic" style="color: var(--accent-gold);">Binti Hj Zulkifli</div>
+                    </div>
+                </div>
+
+                <!-- Invitation Text -->
+                <div class="reveal-item text-center mb-16">
+                    <div class="ornament-divider"></div>
+                    <p class="text-xs md:text-sm font-light leading-loose tracking-wide max-w-xl mx-auto px-2 mt-8" style="color: var(--text-charcoal-soft);">
+                        Dengan penuh hormat dan takzimnya, kami menjemput<br>
+                        Dato' / Datin / Tuan / Puan / Encik / Cik <br>
+                        serta seisi keluarga ke majlis perkahwinan puteri kami
+                    </p>
+                </div>
+
+                <!-- Couple Names -->
+                <div class="reveal-item my-20 flex flex-col items-center">
+                    
+                    <img src="Picture/Pengantin/Syafiqah.svg" alt="Pengantin Perempuan" class="w-20 md:w-28 mb-6">
+                    
+                    <h1 class="font-vibes text-6xl md:text-8xl text-center leading-none" style="color: var(--accent-gold);">
+                        Nur Syafiqah
+                    </h1>
+                    
+                    <h2 class="font-cinzel text-xs md:text-sm tracking-[0.4em] my-10 text-center uppercase" style="color: var(--text-charcoal-light);">
+                        Bersama Pasangannya
+                    </h2>
+
+                    <img src="Picture/Pengantin/Raihan.svg" alt="Pengantin Lelaki" class="w-20 md:w-28 mb-6">
+                    
+                    <h1 class="font-vibes text-6xl md:text-8xl text-center leading-none" style="color: var(--accent-gold);">
+                        M. Raihan Rozalihan
+                    </h1>
+                </div>
+
+                <div class="reveal-item ornament-divider mb-16"></div>
+
+                <!-- Tentatif Program -->
+                <div class="reveal-item my-20 max-w-3xl mx-auto px-4">
+                    <h4 class="font-cinzel text-center text-xs font-bold tracking-[0.3em] mb-12 uppercase" style="color: var(--accent-gold);">Tentatif Majlis</h4>
+                    
+                    <div class="elegant-panel relative px-6 md:px-12 py-12">
+                        <div class="absolute left-8 md:left-1/2 top-12 bottom-12 w-px md:-translate-x-1/2" style="background: linear-gradient(to bottom, transparent, var(--accent-gold), var(--accent-gold), transparent); opacity: 0.5;"></div>
+                        
+                        <div class="flex flex-col gap-10">
+                            
+                            <div class="relative flex flex-col md:flex-row items-start md:items-center w-full group">
+                                <div class="md:w-1/2 md:text-right md:pr-10 mb-1 md:mb-0 order-2 md:order-1 pl-10 md:pl-0">
+                                    <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">10:00 Pagi</h5>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 mt-1 md:mt-0 z-10 transition-all duration-300" style="background: var(--bg-ivory-dark); border-color: var(--accent-gold); box-shadow: 0 0 10px rgba(212,175,55,0.4);"></div>
+                                <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-10 md:pl-0">
+                                    <p class="text-xs md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Ketibaan Tetamu</p>
+                                    <p class="text-xs md:text-sm italic mt-1" style="color: var(--text-charcoal-soft);">Jamuan makan bermula</p>
+                                </div>
+                            </div>
+
+                            <div class="relative flex flex-col md:flex-row items-start md:items-center w-full group">
+                                <div class="md:w-1/2 md:text-right md:pr-10 mb-1 md:mb-0 order-2 md:order-1 pl-10 md:pl-0">
+                                    <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">12:30 T/Hari</h5>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 mt-1 md:mt-0 z-10 transition-all duration-300" style="background: var(--accent-gold); border-color: var(--accent-gold); box-shadow: 0 0 15px rgba(212,175,55,0.6);"></div>
+                                <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-10 md:pl-0">
+                                    <p class="text-xs md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Ketibaan Mempelai</p>
+                                    <p class="text-xs md:text-sm italic mt-1" style="color: var(--text-charcoal-soft);">Majlis bersanding</p>
+                                </div>
+                            </div>
+
+                            <div class="relative flex flex-col md:flex-row items-start md:items-center w-full group">
+                                <div class="md:w-1/2 md:text-right md:pr-10 mb-1 md:mb-0 order-2 md:order-1 pl-10 md:pl-0">
+                                    <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">1:00 Petang</h5>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 mt-1 md:mt-0 z-10 transition-all duration-300" style="background: var(--bg-ivory-dark); border-color: var(--accent-gold); box-shadow: 0 0 10px rgba(212,175,55,0.4);"></div>
+                                <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-10 md:pl-0">
+                                    <p class="text-xs md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Makan Beradab</p>
+                                </div>
+                            </div>
+
+                            <div class="relative flex flex-col md:flex-row items-start md:items-center w-full group">
+                                <div class="md:w-1/2 md:text-right md:pr-10 mb-1 md:mb-0 order-2 md:order-1 pl-10 md:pl-0">
+                                    <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">2:00 Petang</h5>
+                                </div>
+                                <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 mt-1 md:mt-0 z-10 transition-all duration-300" style="background: var(--bg-ivory-dark); border-color: var(--accent-gold); box-shadow: 0 0 10px rgba(212,175,55,0.4);"></div>
+                                <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-10 md:pl-0">
+                                    <p class="text-xs md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Sesi Bergambar</p>
+                                    <p class="text-xs md:text-sm italic mt-1" style="color: var(--text-charcoal-soft);">Bersama keluarga & rakan</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Date Section -->
+                <div class="reveal-item my-16 text-center">
+                    <p class="font-cinzel text-sm font-bold tracking-[0.3em] mb-4 uppercase" style="color: var(--accent-gold);">Hari Yang Dirai</p>
+                    <p class="font-playfair font-semibold tracking-widest text-3xl md:text-4xl mb-2" style="color: var(--text-charcoal);">Sabtu, 30 Mei 2026</p>
+                    <p class="text-sm font-medium mb-4 tracking-widest" style="color: var(--text-charcoal-light);">10:00 Pagi — 5:00 Petang</p>
+
+                    <button onclick="addToCalendar()" class="elegant-button mx-auto">
+                        <i class="fas fa-calendar-plus mr-3"></i> Add to Calendar
+                    </button>
+                </div>
+
+                <!-- Location Section -->
+                <div class="reveal-item my-16 max-w-3xl mx-auto">
+                    <div class="elegant-panel text-center">
+                        <h4 class="font-cinzel text-xs font-bold tracking-[0.3em] mb-6 uppercase" style="color: var(--accent-gold);">Lokasi Majlis</h4>
+                        <p class="text-sm font-light leading-loose mb-6 px-2 uppercase tracking-wide" style="color: var(--text-charcoal);">
+                            TB 9641, LOT 349, <br>
+                            LORONG 10, <br>
+                            TAMAN KINABUTAN RIA,<br>
+                            TAWAU, SABAH.
+                        </p>
+
+                        <!-- Static Map Image -->
+                        <img src="Picture/Map.svg" alt="Peta Lokasi" class="w-full h-auto mb-4" style="border-radius: 24px;">
+
+                        <!-- Navigation Buttons -->
+                        <div class="flex flex-col gap-4 mt-6">
+                            <a href="https://waze.com/ul?ll=4.269511,117.955985&navigate=yes" target="_blank" class="elegant-button outline w-full justify-center">
+                                <i class="fab fa-waze mr-3"></i> Waze
+                            </a>
+                            <a href="https://maps.google.com/?q=4.269511,117.955985" target="_blank" class="elegant-button outline w-full justify-center">
+                                <i class="fas fa-map-marker-alt mr-3"></i> Google Maps
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Countdown Section -->
+                <div class="reveal-item my-16 max-w-3xl mx-auto">
+                    <div class="elegant-panel gold-accent">
+                        <h4 class="font-cinzel text-xs font-bold tracking-[0.3em] mb-8 uppercase text-center" style="color: var(--accent-gold);">Menghitung Hari</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="elegant-panel text-center">
+                                <span id="days" class="font-playfair text-3xl md:text-4xl font-semibold" style="color: var(--text-charcoal);">00</span>
+                                <p class="font-cinzel text-xs uppercase tracking-widest mt-2" style="color: var(--accent-gold);">Hari</p>
+                            </div>
+                            <div class="elegant-panel text-center">
+                                <span id="hours" class="font-playfair text-3xl md:text-4xl font-semibold" style="color: var(--text-charcoal);">00</span>
+                                <p class="font-cinzel text-xs uppercase tracking-widest mt-2" style="color: var(--accent-gold);">Jam</p>
+                            </div>
+                            <div class="elegant-panel text-center">
+                                <span id="mins" class="font-playfair text-3xl md:text-4xl font-semibold" style="color: var(--text-charcoal);">00</span>
+                                <p class="font-cinzel text-xs uppercase tracking-widest mt-2" style="color: var(--accent-gold);">Minit</p>
+                            </div>
+                            <div class="elegant-panel text-center">
+                                <span id="secs" class="font-playfair text-3xl md:text-4xl font-semibold" style="color: var(--text-charcoal);">00</span>
+                                <p class="font-cinzel text-xs uppercase tracking-widest mt-2" style="color: var(--accent-gold);">Saat</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="reveal-item my-16">
+                    <h4 class="font-cinzel text-center text-xs font-bold tracking-[0.3em] mb-10 uppercase" style="color: var(--accent-gold);">Hubungi Kami</h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-12">
+                        <a href="tel:+60165528458" class="elegant-button outline justify-center flex-col py-4 h-auto">
+                            <span class="block text-xs tracking-widest uppercase font-bold mb-1">Bapa</span>
+                            <span class="block text-xs mt-1" style="color: var(--text-charcoal-soft);">+60 16-552 8458</span>
+                        </a>
+                        <a href="tel:+60123456789" class="elegant-button outline justify-center flex-col py-4 h-auto">
+                            <span class="block text-xs tracking-widest uppercase font-bold mb-1">Ibu</span>
+                            <span class="block text-xs mt-1" style="color: var(--text-charcoal-soft);">+60 12-345 6789</span>
+                        </a>
+                        <a href="https://wa.me/60123456789" target="_blank" class="elegant-button outline justify-center flex-col py-4 h-auto">
+                            <span class="block text-xs tracking-widest uppercase font-bold mb-1">Pengantin</span>
+                            <span class="block text-xs mt-1" style="color: var(--text-charcoal-soft);">WhatsApp</span>
+                        </a>
+                    </div>
+
+                    <h5 class="font-cinzel text-center text-xs font-bold tracking-[0.2em] mb-6 uppercase" style="color: var(--text-charcoal-light);">Wakil Keluarga (Sebelah Bapa)</h5>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-5xl mx-auto mb-12">
+                        
+                        <a href="tel:+60198535275" class="elegant-button outline justify-center flex-col py-4 px-2 h-auto text-center w-full">
+                            <span class="block text-xs tracking-widest uppercase font-bold mb-1" style="color: var(--text-charcoal);">Masrah</span>
+                            <span class="block text-xs uppercase tracking-widest mb-2 font-medium" style="color: var(--accent-gold);">Bapa Saudara</span>
+                            <span class="block text-xs tracking-widest" style="color: var(--text-charcoal-soft);">019-853 5275</span>
+                        </a>
+                        
+                        <a href="tel:+60146976985" class="elegant-button outline justify-center flex-col py-4 px-2 h-auto text-center w-full">
+                            <span class="block text-xs tracking-widest uppercase font-bold mb-1" style="color: var(--text-charcoal);">Masturah</span>
+                            <span class="block text-xs uppercase tracking-widest mb-2 font-medium" style="color: var(--accent-gold);">Ibu Saudara</span>
+                            <span class="block text-xs tracking-widest" style="color: var(--text-charcoal-soft);">014-697 6985</span>
+                        </a>
+                        
+                        <a href="tel:+60143790271" class="elegant-button outline justify-center flex-col py-4 px-2 h-auto text-center w-full">
+                            <span class="block text-xs tracking-widest uppercase font-bold mb-1" style="color: var(--text-charcoal);">Masnin</span>
+                            <span class="block text-xs uppercase tracking-widest mb-2 font-medium" style="color: var(--accent-gold);">Ibu Saudara</span>
+                            <span class="block text-xs tracking-widest" style="color: var(--text-charcoal-soft);">014-379 0271</span>
+                        </a>
+                        
+                        <a href="tel:+60198330665" class="elegant-button outline justify-center flex-col py-4 px-2 h-auto text-center w-full">
+                            <span class="block text-xs tracking-widest uppercase font-bold mb-1" style="color: var(--text-charcoal);">Massuan</span>
+                            <span class="block text-xs uppercase tracking-widest mb-2 font-medium" style="color: var(--accent-gold);">Bapa Saudara</span>
+                            <span class="block text-xs tracking-widest" style="color: var(--text-charcoal-soft);">019-833 0665</span>
+                        </a>
+                    </div>
+
+                    <h5 class="font-cinzel text-center text-xs font-bold tracking-[0.2em] mb-6 uppercase" style="color: var(--text-charcoal-light);">Wakil Keluarga (Sebelah Ibu)</h5>
+                    <div class="grid grid-cols-2 gap-3 md:gap-4 max-w-2xl mx-auto">
+                        
+                        <a href="tel:+60165528458" class="elegant-button outline justify-center flex-col py-4 px-2 h-auto text-center w-full">
+                            <span class="block text-xs tracking-widest uppercase font-bold mb-1" style="color: var(--text-charcoal);">Kamariah</span>
+                            <span class="block text-xs uppercase tracking-widest mb-2 font-medium" style="color: var(--accent-gold);">Ibu Saudara</span>
+                            <span class="block text-xs tracking-widest" style="color: var(--text-charcoal-soft);">016-552 8458</span>
+                        </a>
+                        
+                        <a href="tel:+60195320605" class="elegant-button outline justify-center flex-col py-4 px-2 h-auto text-center w-full">
+                            <span class="block text-xs tracking-widest uppercase font-bold mb-1" style="color: var(--text-charcoal);">Suhaimi</span>
+                            <span class="block text-xs uppercase tracking-widest mb-2 font-medium" style="color: var(--accent-gold);">Bapa Saudara</span>
+                            <span class="block text-xs tracking-widest" style="color: var(--text-charcoal-soft);">019-532 0605</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Buku Tetamu Section -->
+                <div class="reveal-item my-16 max-w-2xl mx-auto px-4">
+                    <h4 class="font-cinzel text-center text-xs font-bold tracking-[0.3em] mb-8 uppercase" style="color: var(--accent-gold);">Buku Tetamu</h4>
+                    
+                    <div class="elegant-panel">
+                        <p class="text-center text-xs tracking-widest uppercase mb-8" style="color: var(--text-charcoal-light);">Tinggalkan Titipan Doa & Ucapan</p>
+                        
+                        <form id="wishForm" class="flex flex-col gap-4 mb-10">
+                            <input type="text" id="wishName" placeholder="Nama Anda" required 
+                                class="w-full px-6 py-4 rounded-2xl border-none outline-none text-sm shadow-sm transition-all duration-300 focus:ring-2 focus:ring-[var(--accent-gold)]"
+                                style="background: #ffffff; color: var(--text-charcoal);">
+                            
+                            <textarea id="wishMessage" placeholder="Ucapan / Doa untuk pengantin..." required rows="3"
+                                class="w-full px-6 py-4 rounded-2xl border-none outline-none text-sm shadow-sm transition-all duration-300 focus:ring-2 focus:ring-[var(--accent-gold)] resize-none"
+                                style="background: #ffffff; color: var(--text-charcoal);"></textarea>
+                            
+                            <button type="submit" id="btnSubmitWish" class="elegant-button w-full mt-2">
+                                <span id="btnText">Hantar Ucapan</span>
+                                <i id="btnSpinner" class="fas fa-spinner fa-spin hidden ml-2"></i>
+                            </button>
+                        </form>
+
+                        <div class="ornament-divider w-full mb-8"></div>
+                        
+                        <div id="wishesContainer" class="flex flex-col gap-4 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                            <div class="text-center py-8">
+                                <i class="fas fa-spinner fa-spin text-2xl" style="color: var(--accent-gold);"></i>
+                                <p class="text-xs mt-4 tracking-widest uppercase" style="color: var(--text-charcoal-light);">Memuatkan Ucapan...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Closing Message -->
+                <div class="reveal-item mt-16 max-w-lg mx-auto text-center px-4 pb-8">
+                    <div class="ornament-divider"></div>
+                    <p class="text-xs md:text-sm font-light leading-relaxed italic font-playfair" style="color: var(--text-charcoal-soft);">
+                        "Semoga kehadiran tetamu sekalian akan menyerikan lagi majlis ini serta diberkati Allah S.W.T. Terima Kasih."
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function bukaUndangan() {
+            const envelope = document.querySelector('.envelope-wrapper');
+            envelope.classList.add('open');
+            
+            setTimeout(() => {
+                const container = document.getElementById('envelope-container');
+                container.style.opacity = '0';
+                
+                const interior = document.getElementById('main-interior');
+                interior.style.display = 'block';
+
+                setTimeout(() => {
+                    container.style.visibility = 'hidden';
+                    initScrollAnimations();
+                    startCountdown();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 800);
+                
+            }, 1200);
+        }
+
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('active');
+                        }, index * 100); 
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal-item').forEach(item => observer.observe(item));
+        }
+
+        function startCountdown() {
+            // Updated to May 30, 2026
+            const countDownDate = new Date("May 30, 2026 10:00:00").getTime();
+
+            const x = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = countDownDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerHTML = days < 10 ? '0'+days : days;
+                document.getElementById("hours").innerHTML = hours < 10 ? '0'+hours : hours;
+                document.getElementById("mins").innerHTML = minutes < 10 ? '0'+minutes : minutes;
+                document.getElementById("secs").innerHTML = seconds < 10 ? '0'+seconds : seconds;
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("days").innerHTML = "00";
+                    document.getElementById("hours").innerHTML = "00";
+                    document.getElementById("mins").innerHTML = "00";
+                    document.getElementById("secs").innerHTML = "00";
+                }
+            }, 1000);
+        }
+
+        function addToCalendar() {
+            // Create Google Calendar URL
+            const eventDetails = {
+                action: 'TEMPLATE',
+                text: 'Walimatul Urus - Nur Syafiqah & M. Raihan Rozalihan',
+                dates: '20260530T100000/20260530T170000',
+                details: 'Majlis Perkahwinan Nur Syafiqah & M. Raihan Rozalihan',
+                location: 'TB 9641, Lot 349, Lorong 10, Taman Kinabutan Ria, Tawau, Sabah',
+                trp: 'false'
+            };
+
+            const queryString = Object.keys(eventDetails)
+                .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(eventDetails[key]))
+                .join('&');
+
+            const googleCalendarUrl = 'https://www.google.com/calendar/render?' + queryString;
+
+            // Open in new tab
+            window.open(googleCalendarUrl, '_blank');
+        }
+
+        // --- SISTEM BUKU TETAMU (WISHES) ---
+        // URL Google Apps Script anda telah dimasukkan di sini
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby4bUqn4aYeOPKlQED-xVktCmGA0JWgtXZ1vq2kPkw1zRBrWEemslSx6yRdfkEuloek/exec';
+        
+        // 1. Fetch dan paparkan ucapan apabila web dibuka
+        async function loadWishes() {
+            const container = document.getElementById('wishesContainer');
+            try {
+                const response = await fetch(WEB_APP_URL);
+                const wishes = await response.json();
+                
+                container.innerHTML = ''; // Kosongkan loading spinner
+                
+                if (wishes.length === 0) {
+                    container.innerHTML = '<p class="text-center text-xs italic text-[var(--text-charcoal-soft)]">Jadilah orang pertama yang mendoakan pasangan ini.</p>';
+                    return;
+                }
+
+                wishes.forEach(wish => {
+                    const wishCard = document.createElement('div');
+                    wishCard.className = 'bg-white p-5 rounded-2xl shadow-sm border border-gray-50 transition-all hover:shadow-md';
+                    wishCard.innerHTML = `
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-bold text-sm" style="color: var(--text-charcoal);">${wish.nama}</span>
+                            <span class="text-[0.65rem] tracking-wider uppercase" style="color: var(--text-charcoal-soft);">${wish.tarikh}</span>
+                        </div>
+                        <p class="text-sm font-light leading-relaxed" style="color: var(--text-charcoal-light);">${wish.ucapan}</p>
+                    `;
+                    container.appendChild(wishCard);
+                });
+            } catch (error) {
+                container.innerHTML = '<p class="text-center text-xs text-red-400">Gagal memuatkan ucapan. Sila cuba sebentar lagi.</p>';
+            }
+        }
+
+        // 2. Kendalikan penghantaran form (Submit)
+        document.getElementById('wishForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const btnSubmit = document.getElementById('btnSubmitWish');
+            const btnText = document.getElementById('btnText');
+            const btnSpinner = document.getElementById('btnSpinner');
+            
+            // UX Loading State
+            btnSubmit.disabled = true;
+            btnText.innerText = 'Menghantar...';
+            btnSpinner.classList.remove('hidden');
+
+            const data = {
+                nama: document.getElementById('wishName').value,
+                ucapan: document.getElementById('wishMessage').value
+            };
+
+            try {
+                await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Penting untuk mengelakkan isu CORS
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                // Bersihkan form
+                document.getElementById('wishForm').reset();
+                
+                // Mesej Kejayaan
+                btnText.innerText = 'Berjaya Dihantar!';
+                setTimeout(() => {
+                    btnText.innerText = 'Hantar Ucapan';
+                    btnSubmit.disabled = false;
+                }, 3000);
+                
+                // Muat semula senarai ucapan secara automatik
+                loadWishes();
+                
+            } catch (error) {
+                alert('Terdapat ralat rangkaian. Sila cuba lagi.');
+                btnSubmit.disabled = false;
+                btnText.innerText = 'Hantar Ucapan';
+            } finally {
+                btnSpinner.classList.add('hidden');
+            }
+        });
+
+        // Muat senarai ucapan sebaik sahaja laman web dibuka
+        document.addEventListener('DOMContentLoaded', loadWishes);
+    </script>
+</body>
+</html>
