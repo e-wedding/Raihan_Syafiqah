@@ -622,21 +622,21 @@
                 <!-- Contact Section -->
                 <div class="reveal-item my-16">
                     <h4 class="font-cinzel text-center text-xs font-bold tracking-[0.3em] mb-10 uppercase" style="color: var(--accent-gold);">Hubungi Kami</h4>
-                    
+
                     <!-- Primary Contacts -->
-                    <div id="container-utama" class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-12">
+                    <div id="container-utama" class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-8" style="display: none;">
                         <!-- Will be populated dynamically from Google Sheets -->
                     </div>
 
                     <!-- Wakil Sebelah Bapa -->
                     <h5 id="heading-bapa" class="font-cinzel text-center text-xs font-bold tracking-[0.2em] mb-6 uppercase" style="color: var(--text-charcoal-light); display: none;">Wakil Keluarga (Sebelah Bapa)</h5>
-                    <div id="container-bapa" class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-5xl mx-auto mb-12">
+                    <div id="container-bapa" class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-5xl mx-auto mb-10" style="display: none;">
                         <!-- Will be populated dynamically from Google Sheets -->
                     </div>
 
                     <!-- Wakil Sebelah Ibu -->
                     <h5 id="heading-ibu" class="font-cinzel text-center text-xs font-bold tracking-[0.2em] mb-6 uppercase" style="color: var(--text-charcoal-light); display: none;">Wakil Keluarga (Sebelah Ibu)</h5>
-                    <div id="container-ibu" class="grid grid-cols-2 gap-3 md:gap-4 max-w-2xl mx-auto">
+                    <div id="container-ibu" class="grid grid-cols-2 gap-3 md:gap-4 max-w-2xl mx-auto" style="display: none;">
                         <!-- Will be populated dynamically from Google Sheets -->
                     </div>
                 </div>
@@ -839,30 +839,32 @@
             try {
                 const response = await fetch(CONTACTS_URL);
                 const data = await response.json();
-                
+
                 // --- 1. PROSES DATA KENALAN ---
                 const containerUtama = document.getElementById('container-utama');
                 const containerBapa = document.getElementById('container-bapa');
                 const containerIbu = document.getElementById('container-ibu');
                 const headingBapa = document.getElementById('heading-bapa');
                 const headingIbu = document.getElementById('heading-ibu');
-                
+
                 containerUtama.innerHTML = '';
                 containerBapa.innerHTML = '';
                 containerIbu.innerHTML = '';
-                
+
+                let hasUtama = false;
                 let hasBapa = false;
                 let hasIbu = false;
 
                 data.contacts.forEach(contact => {
+                    // UI Kad Moden: Gantikan butang bujur dengan kad petak bucu bulat (rounded-2xl)
                     const btnHTML = `
-                        <a href="${contact.pautan}" target="_blank" class="elegant-button outline justify-center flex-col py-4 px-2 h-auto text-center w-full transition-all hover:-translate-y-1">
-                            <span class="block text-xs tracking-widest uppercase font-bold mb-1" style="color: var(--text-charcoal);">${contact.nama}</span>
-                            <span class="block text-[0.65rem] uppercase tracking-widest mb-2 font-medium" style="color: var(--accent-gold);">${contact.peranan}</span>
-                            
-                            <div class="flex items-center justify-center gap-2 mt-1">
-                                <i class="fab fa-whatsapp text-lg" style="color: #25D366;"></i>
-                                <span class="block text-[0.7rem] tracking-widest" style="color: var(--text-charcoal-soft);">${contact.paparan}</span>
+                        <a href="${contact.pautan}" target="_blank" class="bg-white rounded-2xl p-4 flex flex-col items-center justify-center border border-gray-100 shadow-sm transition-all hover:shadow-md hover:-translate-y-1 w-full text-center group">
+                            <span class="block text-xs tracking-widest uppercase font-bold mb-1 group-hover:text-[#D4AF37] transition-colors duration-300" style="color: var(--text-charcoal);">${contact.nama}</span>
+                            <span class="block text-[0.6rem] uppercase tracking-[0.2em] mb-4" style="color: var(--text-charcoal-soft);">${contact.peranan}</span>
+
+                            <div class="flex items-center justify-center gap-2 bg-[#F5F0E6] py-1.5 px-3 rounded-full border border-gray-200 w-full max-w-[140px]">
+                                <i class="fab fa-whatsapp text-base" style="color: #25D366;"></i>
+                                <span class="text-[0.65rem] tracking-widest font-medium" style="color: var(--text-charcoal);">${contact.paparan}</span>
                             </div>
                         </a>
                     `;
@@ -870,21 +872,31 @@
                     // Susun ikut kategori dari Google Sheet
                     if(contact.kategori === 'Utama' || contact.kategori === 'Pengantin') {
                         containerUtama.innerHTML += btnHTML;
-                    } 
+                        hasUtama = true;
+                    }
                     else if(contact.kategori === 'Wakil Keluarga (Sebelah Bapa)') {
                         containerBapa.innerHTML += btnHTML;
                         hasBapa = true;
-                    } 
+                    }
                     else if(contact.kategori === 'Wakil Keluarga (Sebelah Ibu)') {
                         containerIbu.innerHTML += btnHTML;
                         hasIbu = true;
                     }
                 });
-                
-                // Show/hide headings based on content
-                if(hasBapa) headingBapa.style.display = 'block';
-                if(hasIbu) headingIbu.style.display = 'block';
-                
+
+                // Show/hide grid container bergantung pada wujudnya data (Ini menghilangkan jurang besar!)
+                if(hasUtama) containerUtama.style.display = 'grid';
+
+                if(hasBapa) {
+                    headingBapa.style.display = 'block';
+                    containerBapa.style.display = 'grid';
+                }
+
+                if(hasIbu) {
+                    headingIbu.style.display = 'block';
+                    containerIbu.style.display = 'grid';
+                }
+
             } catch (error) {
                 console.error('Error loading contacts:', error);
                 // Containers will remain empty if there's an error
