@@ -848,9 +848,9 @@
         const musicBtn = document.getElementById('musicToggle');
         const musicIcon = document.getElementById('musicIcon');
 
-        // Tetapkan volum awal (0.3 = 30%)
+        // Tetapkan volum awal (0.7 = 70%)
         if (music) {
-            music.volume = 0.3;
+            music.volume = 0.7;
         }
 
         // Fungsi Fade-in Muzik
@@ -883,9 +883,9 @@
             const envelope = document.querySelector('.envelope-wrapper');
             envelope.classList.add('open');
 
-            // Muzik bermula dengan Fade-in (0 ke 0.3 dalam 3 saat)
+            // Muzik bermula dengan Fade-in (0 ke 0.7 dalam 3 saat)
             if (music) {
-                fadeInMusic(music, 0.3, 3000);
+                fadeInMusic(music, 0.7, 3000);
             }
             if (musicBtn) {
                 musicBtn.style.display = 'flex';
