@@ -887,7 +887,9 @@
             if (music) {
                 fadeInMusic(music, 0.3, 3000);
             }
-            musicBtn.style.display = 'flex';
+            if (musicBtn) {
+                musicBtn.style.display = 'flex';
+            }
 
             setTimeout(() => {
                 const container = document.getElementById('envelope-container');
@@ -909,14 +911,20 @@
         }
 
         function toggleMusic() {
+            if (!music) return;
+            
             if (music.paused) {
                 music.play();
-                musicIcon.classList.remove('fa-volume-mute');
-                musicIcon.classList.add('fa-music');
+                if (musicIcon) {
+                    musicIcon.classList.remove('fa-volume-mute');
+                    musicIcon.classList.add('fa-music');
+                }
             } else {
                 music.pause();
-                musicIcon.classList.remove('fa-music');
-                musicIcon.classList.add('fa-volume-mute');
+                if (musicIcon) {
+                    musicIcon.classList.remove('fa-music');
+                    musicIcon.classList.add('fa-volume-mute');
+                }
             }
         }
 
