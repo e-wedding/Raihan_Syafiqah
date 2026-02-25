@@ -623,63 +623,21 @@
                 <div class="reveal-item my-16">
                     <h4 class="font-cinzel text-center text-xs font-bold tracking-[0.3em] mb-10 uppercase" style="color: var(--accent-gold);">Hubungi Kami</h4>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-12">
-                        <a href="tel:+60165528458" class="elegant-button outline justify-center flex-col py-4 h-auto">
-                            <span class="block text-xs tracking-widest uppercase font-bold mb-1">Bapa</span>
-                            <span class="block text-xs mt-1" style="color: var(--text-charcoal-soft);">+60 16-552 8458</span>
-                        </a>
-                        <a href="tel:+60123456789" class="elegant-button outline justify-center flex-col py-4 h-auto">
-                            <span class="block text-xs tracking-widest uppercase font-bold mb-1">Ibu</span>
-                            <span class="block text-xs mt-1" style="color: var(--text-charcoal-soft);">+60 12-345 6789</span>
-                        </a>
-                        <a href="https://wa.me/60123456789" target="_blank" class="elegant-button outline justify-center flex-col py-4 h-auto">
-                            <span class="block text-xs tracking-widest uppercase font-bold mb-1">Pengantin</span>
-                            <span class="block text-xs mt-1" style="color: var(--text-charcoal-soft);">WhatsApp</span>
-                        </a>
+                    <!-- Primary Contacts -->
+                    <div id="container-utama" class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-12">
+                        <!-- Will be populated dynamically from Google Sheets -->
                     </div>
 
-                    <h5 class="font-cinzel text-center text-xs font-bold tracking-[0.2em] mb-6 uppercase" style="color: var(--text-charcoal-light);">Wakil Keluarga (Sebelah Bapa)</h5>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-5xl mx-auto mb-12">
-                        
-                        <a href="tel:+60198535275" class="elegant-button outline justify-center flex-col py-4 px-2 h-auto text-center w-full">
-                            <span class="block text-xs tracking-widest uppercase font-bold mb-1" style="color: var(--text-charcoal);">Masrah</span>
-                            <span class="block text-xs uppercase tracking-widest mb-2 font-medium" style="color: var(--accent-gold);">Bapa Saudara</span>
-                            <span class="block text-xs tracking-widest" style="color: var(--text-charcoal-soft);">019-853 5275</span>
-                        </a>
-                        
-                        <a href="tel:+60146976985" class="elegant-button outline justify-center flex-col py-4 px-2 h-auto text-center w-full">
-                            <span class="block text-xs tracking-widest uppercase font-bold mb-1" style="color: var(--text-charcoal);">Masturah</span>
-                            <span class="block text-xs uppercase tracking-widest mb-2 font-medium" style="color: var(--accent-gold);">Ibu Saudara</span>
-                            <span class="block text-xs tracking-widest" style="color: var(--text-charcoal-soft);">014-697 6985</span>
-                        </a>
-                        
-                        <a href="tel:+60143790271" class="elegant-button outline justify-center flex-col py-4 px-2 h-auto text-center w-full">
-                            <span class="block text-xs tracking-widest uppercase font-bold mb-1" style="color: var(--text-charcoal);">Masnin</span>
-                            <span class="block text-xs uppercase tracking-widest mb-2 font-medium" style="color: var(--accent-gold);">Ibu Saudara</span>
-                            <span class="block text-xs tracking-widest" style="color: var(--text-charcoal-soft);">014-379 0271</span>
-                        </a>
-                        
-                        <a href="tel:+60198330665" class="elegant-button outline justify-center flex-col py-4 px-2 h-auto text-center w-full">
-                            <span class="block text-xs tracking-widest uppercase font-bold mb-1" style="color: var(--text-charcoal);">Massuan</span>
-                            <span class="block text-xs uppercase tracking-widest mb-2 font-medium" style="color: var(--accent-gold);">Bapa Saudara</span>
-                            <span class="block text-xs tracking-widest" style="color: var(--text-charcoal-soft);">019-833 0665</span>
-                        </a>
+                    <!-- Wakil Sebelah Bapa -->
+                    <h5 id="heading-bapa" class="font-cinzel text-center text-xs font-bold tracking-[0.2em] mb-6 uppercase" style="color: var(--text-charcoal-light); display: none;">Wakil Keluarga (Sebelah Bapa)</h5>
+                    <div id="container-bapa" class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-5xl mx-auto mb-12">
+                        <!-- Will be populated dynamically from Google Sheets -->
                     </div>
 
-                    <h5 class="font-cinzel text-center text-xs font-bold tracking-[0.2em] mb-6 uppercase" style="color: var(--text-charcoal-light);">Wakil Keluarga (Sebelah Ibu)</h5>
-                    <div class="grid grid-cols-2 gap-3 md:gap-4 max-w-2xl mx-auto">
-                        
-                        <a href="tel:+60165528458" class="elegant-button outline justify-center flex-col py-4 px-2 h-auto text-center w-full">
-                            <span class="block text-xs tracking-widest uppercase font-bold mb-1" style="color: var(--text-charcoal);">Kamariah</span>
-                            <span class="block text-xs uppercase tracking-widest mb-2 font-medium" style="color: var(--accent-gold);">Ibu Saudara</span>
-                            <span class="block text-xs tracking-widest" style="color: var(--text-charcoal-soft);">016-552 8458</span>
-                        </a>
-                        
-                        <a href="tel:+60195320605" class="elegant-button outline justify-center flex-col py-4 px-2 h-auto text-center w-full">
-                            <span class="block text-xs tracking-widest uppercase font-bold mb-1" style="color: var(--text-charcoal);">Suhaimi</span>
-                            <span class="block text-xs uppercase tracking-widest mb-2 font-medium" style="color: var(--accent-gold);">Bapa Saudara</span>
-                            <span class="block text-xs tracking-widest" style="color: var(--text-charcoal-soft);">019-532 0605</span>
-                        </a>
+                    <!-- Wakil Sebelah Ibu -->
+                    <h5 id="heading-ibu" class="font-cinzel text-center text-xs font-bold tracking-[0.2em] mb-6 uppercase" style="color: var(--text-charcoal-light); display: none;">Wakil Keluarga (Sebelah Ibu)</h5>
+                    <div id="container-ibu" class="grid grid-cols-2 gap-3 md:gap-4 max-w-2xl mx-auto">
+                        <!-- Will be populated dynamically from Google Sheets -->
                     </div>
                 </div>
 
@@ -850,6 +808,67 @@
             }
         }
 
+        // --- SISTEM KENALAN (CONTACTS) ---
+        // URL Google Apps Script untuk kenalan (sama dengan wishes atau berbeza ikut keperluan)
+        const CONTACTS_URL = 'https://script.google.com/macros/s/AKfycby4bUqn4aYeOPKlQED-xVktCmGA0JWgtXZ1vq2kPkw1zRBrWEemslSx6yRdfkEuloek/exec';
+        
+        // Load contacts from Google Sheets
+        async function loadData() {
+            try {
+                const response = await fetch(CONTACTS_URL);
+                const data = await response.json();
+                
+                // --- 1. PROSES DATA KENALAN ---
+                const containerUtama = document.getElementById('container-utama');
+                const containerBapa = document.getElementById('container-bapa');
+                const containerIbu = document.getElementById('container-ibu');
+                const headingBapa = document.getElementById('heading-bapa');
+                const headingIbu = document.getElementById('heading-ibu');
+                
+                containerUtama.innerHTML = '';
+                containerBapa.innerHTML = '';
+                containerIbu.innerHTML = '';
+                
+                let hasBapa = false;
+                let hasIbu = false;
+
+                data.contacts.forEach(contact => {
+                    // Format phone number for tel: link (remove spaces, dashes, etc.)
+                    const cleanPhone = contact.paparan.replace(/[\s\-\(\)]/g, '');
+                    const telLink = cleanPhone.startsWith('0') ? `tel:+6${cleanPhone.substring(1)}` : `tel:${cleanPhone}`;
+                    
+                    const btnHTML = `
+                        <a href="${telLink}" class="elegant-button outline justify-center flex-col py-4 px-2 h-auto text-center w-full transition-all hover:-translate-y-1">
+                            <span class="block text-xs tracking-widest uppercase font-bold mb-1" style="color: var(--text-charcoal);">${contact.nama}</span>
+                            <span class="block text-xs uppercase tracking-widest mb-2 font-medium" style="color: var(--accent-gold);">${contact.peranan}</span>
+                            <span class="block text-xs tracking-widest" style="color: var(--text-charcoal-soft);">${contact.paparan}</span>
+                        </a>
+                    `;
+
+                    // Susun ikut kategori dari Google Sheet
+                    if(contact.kategori === 'Utama' || contact.kategori === 'Pengantin') {
+                        containerUtama.innerHTML += btnHTML;
+                    } 
+                    else if(contact.kategori === 'Wakil Keluarga (Sebelah Bapa)') {
+                        containerBapa.innerHTML += btnHTML;
+                        hasBapa = true;
+                    } 
+                    else if(contact.kategori === 'Wakil Keluarga (Sebelah Ibu)') {
+                        containerIbu.innerHTML += btnHTML;
+                        hasIbu = true;
+                    }
+                });
+                
+                // Show/hide headings based on content
+                if(hasBapa) headingBapa.style.display = 'block';
+                if(hasIbu) headingIbu.style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error loading contacts:', error);
+                // Fallback: show static content if needed
+            }
+        }
+
         // 2. Kendalikan penghantaran form (Submit)
         document.getElementById('wishForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -898,8 +917,11 @@
             }
         });
 
-        // Muat senarai ucapan sebaik sahaja laman web dibuka
-        document.addEventListener('DOMContentLoaded', loadWishes);
+        // Muat senarai ucapan dan kenalan sebaik sahaja laman web dibuka
+        document.addEventListener('DOMContentLoaded', () => {
+            loadWishes();
+            loadData();
+        });
     </script>
 </body>
 </html>
