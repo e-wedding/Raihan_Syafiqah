@@ -776,17 +776,22 @@
         // --- SISTEM BUKU TETAMU (WISHES) ---
         // URL Google Apps Script anda telah dimasukkan di sini
         const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby4bUqn4aYeOPKlQED-xVktCmGA0JWgtXZ1vq2kPkw1zRBrWEemslSx6yRdfkEuloek/exec';
-        
+
         // 1. Fetch dan paparkan ucapan apabila web dibuka
         async function loadWishes() {
             const container = document.getElementById('wishesContainer');
             try {
                 const response = await fetch(WEB_APP_URL);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
                 const wishes = await response.json();
-                
+
                 container.innerHTML = ''; // Kosongkan loading spinner
-                
-                if (wishes.length === 0) {
+
+                if (!wishes || wishes.length === 0) {
                     container.innerHTML = '<p class="text-center text-xs italic text-[var(--text-charcoal-soft)]">Jadilah orang pertama yang mendoakan pasangan ini.</p>';
                     return;
                 }
@@ -804,7 +809,13 @@
                     container.appendChild(wishCard);
                 });
             } catch (error) {
-                container.innerHTML = '<p class="text-center text-xs text-red-400">Gagal memuatkan ucapan. Sila cuba sebentar lagi.</p>';
+                console.error('Error loading wishes:', error);
+                container.innerHTML = `
+                    <div class="text-center py-4">
+                        <p class="text-xs text-red-400 mb-2">Gagal memuatkan ucapan.</p>
+                        <p class="text-[0.6rem] text-gray-400">Pastikan Google Apps Script Web App sudah di-deploy dengan betul.</p>
+                    </div>
+                `;
             }
         }
 
@@ -865,7 +876,7 @@
                 
             } catch (error) {
                 console.error('Error loading contacts:', error);
-                // Fallback: show static content if needed
+                // Containers will remain empty if there's an error
             }
         }
 
