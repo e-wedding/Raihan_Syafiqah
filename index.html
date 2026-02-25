@@ -833,15 +833,15 @@
                 let hasIbu = false;
 
                 data.contacts.forEach(contact => {
-                    // Format phone number for tel: link (remove spaces, dashes, etc.)
-                    const cleanPhone = contact.paparan.replace(/[\s\-\(\)]/g, '');
-                    const telLink = cleanPhone.startsWith('0') ? `tel:+6${cleanPhone.substring(1)}` : `tel:${cleanPhone}`;
-                    
                     const btnHTML = `
-                        <a href="${telLink}" class="elegant-button outline justify-center flex-col py-4 px-2 h-auto text-center w-full transition-all hover:-translate-y-1">
+                        <a href="${contact.pautan}" target="_blank" class="elegant-button outline justify-center flex-col py-4 px-2 h-auto text-center w-full transition-all hover:-translate-y-1">
                             <span class="block text-xs tracking-widest uppercase font-bold mb-1" style="color: var(--text-charcoal);">${contact.nama}</span>
-                            <span class="block text-xs uppercase tracking-widest mb-2 font-medium" style="color: var(--accent-gold);">${contact.peranan}</span>
-                            <span class="block text-xs tracking-widest" style="color: var(--text-charcoal-soft);">${contact.paparan}</span>
+                            <span class="block text-[0.65rem] uppercase tracking-widest mb-2 font-medium" style="color: var(--accent-gold);">${contact.peranan}</span>
+                            
+                            <div class="flex items-center justify-center gap-2 mt-1">
+                                <i class="fab fa-whatsapp text-lg" style="color: #25D366;"></i>
+                                <span class="block text-[0.7rem] tracking-widest" style="color: var(--text-charcoal-soft);">${contact.paparan}</span>
+                            </div>
                         </a>
                     `;
 
