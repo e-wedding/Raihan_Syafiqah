@@ -191,42 +191,50 @@
             transform: translateY(-2px) scale(0.98);
         }
 
-        /* --- ELEGANT BUTTON (for main content) --- */
+        /* --- ELEGANT BUTTON (Glassmorphism) --- */
         .elegant-button {
-            background: var(--text-charcoal);
-            color: #ffffff;
-            border: none;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            color: var(--text-charcoal);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: pointer;
             display: inline-flex;
             justify-content: center;
             align-items: center;
             border-radius: 100px;
-            font-weight: 500;
+            font-weight: 600;
             text-decoration: none;
             padding: 1rem 2rem;
             font-size: 0.75rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
         }
 
         .elegant-button:hover {
-            background: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.8);
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px var(--shadow-medium);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.2);
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
         }
 
         .elegant-button.outline {
-            background: rgba(43, 43, 43, 0.05);
+            background: rgba(253, 251, 247, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(212, 175, 55, 0.4);
             color: var(--text-charcoal);
             box-shadow: none;
         }
 
         .elegant-button.outline:hover {
-            background: rgba(43, 43, 43, 0.1);
-            color: var(--text-charcoal);
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--accent-gold);
             transform: scale(0.98);
-            box-shadow: none;
+            border-color: var(--accent-gold);
         }
 
         /* --- MODERN ENVELOPE ENTRANCE --- */
@@ -331,7 +339,7 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 8px 16px rgba(212, 175, 55, 0.25);
-            transition: all 0.4s ease;
+            transition: all 0.4s ease 0.2s;
         }
 
         /* --- OPENING ANIMATIONS --- */
@@ -544,7 +552,7 @@
     <div id="sparkle-container"></div>
 
     <!-- Parallax Floral Decorations -->
-    <div class="parallax-flowers-container overflow-hidden fixed inset-0 pointer-events-none" style="z-index: -1;">
+    <div class="parallax-flowers-container overflow-hidden fixed inset-0 pointer-events-none" style="z-index: 0;">
         <div class="parallax absolute -top-10 -left-10 opacity-20 md:opacity-30 w-48 md:w-80" data-speed="0.1">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                 <path fill="none" stroke="#D4AF37" stroke-width="1" d="M40,160 Q60,100 120,80 M120,80 Q150,70 180,90 M120,80 Q100,40 130,20 M120,80 Q80,70 60,30 M60,100 Q40,80 20,90 M80,130 Q60,140 40,130"/>
@@ -589,10 +597,10 @@
 
             <div class="content-card sm:p-12 md:p-16 mb-16">
                 <!-- Corner Ornaments -->
-                <div class="corner-ornament top-left parallax" data-speed="0.05"></div>
-                <div class="corner-ornament top-right parallax" data-speed="0.08"></div>
-                <div class="corner-ornament bottom-left parallax" data-speed="0.06"></div>
-                <div class="corner-ornament bottom-right parallax" data-speed="0.04"></div>
+                <div class="corner-ornament top-left"></div>
+                <div class="corner-ornament top-right"></div>
+                <div class="corner-ornament bottom-left"></div>
+                <div class="corner-ornament bottom-right"></div>
 
                 <!-- Bismillah -->
                 <div class="reveal-item text-center mb-8 md:mb-12 flex justify-center">
@@ -665,7 +673,7 @@
                                 <div class="md:w-1/2 md:text-right md:pr-10 mb-1 md:mb-0 order-2 md:order-1 pl-12 md:pl-0">
                                     <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">10:00 Pagi</h5>
                                 </div>
-                                <div class="absolute left-1 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 mt-1 md:mt-0 z-10 transition-all duration-300" style="background: var(--bg-ivory-dark); border-color: var(--accent-gold); box-shadow: 0 0 10px rgba(212,175,55,0.4);"></div>
+                                <div class="absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 mt-1 md:mt-0 z-10 transition-all duration-300" style="background: var(--bg-ivory-dark); border-color: var(--accent-gold); box-shadow: 0 0 10px rgba(212,175,55,0.4);"></div>
                                 <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
                                     <p class="text-[0.7rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Ketibaan Tetamu</p>
                                     <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Jamuan makan bermula</p>
@@ -676,7 +684,7 @@
                                 <div class="md:w-1/2 md:text-right md:pr-10 mb-1 md:mb-0 order-2 md:order-1 pl-12 md:pl-0">
                                     <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">12:30 T/Hari</h5>
                                 </div>
-                                <div class="absolute left-1 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 mt-1 md:mt-0 z-10 transition-all duration-300" style="background: var(--accent-gold); border-color: var(--accent-gold); box-shadow: 0 0 15px rgba(212,175,55,0.6);"></div>
+                                <div class="absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 mt-1 md:mt-0 z-10 transition-all duration-300" style="background: var(--accent-gold); border-color: var(--accent-gold); box-shadow: 0 0 15px rgba(212,175,55,0.6);"></div>
                                 <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
                                     <p class="text-[0.7rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Ketibaan Mempelai</p>
                                     <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Majlis bersanding</p>
@@ -687,7 +695,7 @@
                                 <div class="md:w-1/2 md:text-right md:pr-10 mb-1 md:mb-0 order-2 md:order-1 pl-12 md:pl-0">
                                     <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">1:00 Petang</h5>
                                 </div>
-                                <div class="absolute left-1 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 mt-1 md:mt-0 z-10 transition-all duration-300" style="background: var(--bg-ivory-dark); border-color: var(--accent-gold); box-shadow: 0 0 10px rgba(212,175,55,0.4);"></div>
+                                <div class="absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 mt-1 md:mt-0 z-10 transition-all duration-300" style="background: var(--bg-ivory-dark); border-color: var(--accent-gold); box-shadow: 0 0 10px rgba(212,175,55,0.4);"></div>
                                 <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
                                     <p class="text-[0.7rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Makan Beradab</p>
                                 </div>
@@ -697,7 +705,7 @@
                                 <div class="md:w-1/2 md:text-right md:pr-10 mb-1 md:mb-0 order-2 md:order-1 pl-12 md:pl-0">
                                     <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">2:00 Petang</h5>
                                 </div>
-                                <div class="absolute left-1 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 mt-1 md:mt-0 z-10 transition-all duration-300" style="background: var(--bg-ivory-dark); border-color: var(--accent-gold); box-shadow: 0 0 10px rgba(212,175,55,0.4);"></div>
+                                <div class="absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 mt-1 md:mt-0 z-10 transition-all duration-300" style="background: var(--bg-ivory-dark); border-color: var(--accent-gold); box-shadow: 0 0 10px rgba(212,175,55,0.4);"></div>
                                 <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
                                     <p class="text-[0.7rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Sesi Bergambar</p>
                                     <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Bersama keluarga & rakan</p>
@@ -872,9 +880,6 @@
                 console.log('Music initialized, volume set to 70%');
             }
         }
-
-        // Initialize on DOMContentLoaded
-        document.addEventListener('DOMContentLoaded', initMusic);
 
         // Fungsi Fade-in Muzik
         function fadeInMusic(audio, targetVolume, duration) {
@@ -1094,7 +1099,7 @@
             const eventDetails = {
                 action: 'TEMPLATE',
                 text: 'Walimatul Urus - Nur Syafiqah & M. Raihan Rozalihan',
-                dates: '20260530T100000/20260530T170000',
+                dates: '20260530T020000Z/20260530T090000Z',
                 details: 'Majlis Perkahwinan Nur Syafiqah & M. Raihan Rozalihan',
                 location: 'TB 9641, Lot 349, Lorong 10, Taman Kinabutan Ria, Tawau, Sabah',
                 trp: 'false'
