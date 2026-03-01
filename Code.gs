@@ -29,24 +29,14 @@ function doGet() {
   // 1. Ambil Data Ucapan
   const sheetUcapan = ss.getSheetByName('Ucapan');
   const lastRowUcapan = sheetUcapan.getLastRow();
-  
-  // Handle empty sheet case
-  if (lastRowUcapan <= 1) {
-    return ContentService.createTextOutput(JSON.stringify({
-      wishes: [],
-      contacts: []
-    })).setMimeType(ContentService.MimeType.JSON);
-  }
-  
+
   // OPTIMIZATION 2: Only read rows with data (skip header row)
-  const rawWishes = sheetUcapan.getRange(2, 1, lastRowUcapan - 1, 3).getValues();
-  
-  // OPTIMIZATION 3: Send raw data - format on client side (faster)
-  const wishes = rawWishes.map(r => ({
-    t: r[0], // tarikh (raw date)
-    n: r[1], // nama
-    u: r[2]  // ucapan
-  })).reverse();
+  const wishes = lastRowUcapan > 1 ? 
+    sheetUcapan.getRange(2, 1, lastRowUcapan - 1, 3).getValues().map(r => ({
+      t: r[0], // tarikh (raw date)
+      n: r[1], // nama
+      u: r[2]  // ucapan
+    })).reverse() : [];
 
   // 2. Ambil Data Kenalan
   const sheetKenalan = ss.getSheetByName('Kenalan');
