@@ -1483,23 +1483,24 @@
 
         // OPTIMIZATION: Separated processing logic for reusability
         function processContacts(contacts) {
-            const containerUtama = document.getElementById('container-utama');
-            const containerBapa = document.getElementById('container-bapa');
-            const containerIbu = document.getElementById('container-ibu');
-            const headingBapa = document.getElementById('heading-bapa');
-            const headingIbu = document.getElementById('heading-ibu');
+            try {
+                const containerUtama = document.getElementById('container-utama');
+                const containerBapa = document.getElementById('container-bapa');
+                const containerIbu = document.getElementById('container-ibu');
+                const headingBapa = document.getElementById('heading-bapa');
+                const headingIbu = document.getElementById('heading-ibu');
 
-            containerUtama.innerHTML = '';
-            containerBapa.innerHTML = '';
-            containerIbu.innerHTML = '';
+                containerUtama.innerHTML = '';
+                containerBapa.innerHTML = '';
+                containerIbu.innerHTML = '';
 
-            let hasUtama = false;
-            let hasBapa = false;
-            let hasIbu = false;
+                let hasUtama = false;
+                let hasBapa = false;
+                let hasIbu = false;
 
-            contacts.forEach(contact => {
-                // OPTIMIZATION: Build WhatsApp link on client side (faster than GAS)
-                let pautan = '';
+                contacts.forEach(contact => {
+                    // OPTIMIZATION: Build WhatsApp link on client side (faster than GAS)
+                    let pautan = '';
                 if (contact.a) {
                     const cleanNum = String(contact.a).replace(/\D/g, '');
                     if (cleanNum.startsWith('0')) {
@@ -1537,18 +1538,18 @@
                 }
             });
 
-                // Show/hide grid container bergantung pada wujudnya data (Ini menghilangkan jurang besar!)
-                if(hasUtama) containerUtama.style.display = 'grid';
+            // Show/hide grid container bergantung pada wujudnya data (Ini menghilangkan jurang besar!)
+            if(hasUtama) containerUtama.style.display = 'grid';
 
-                if(hasBapa) {
-                    headingBapa.style.display = 'block';
-                    containerBapa.style.display = 'grid';
-                }
+            if(hasBapa) {
+                headingBapa.style.display = 'block';
+                containerBapa.style.display = 'grid';
+            }
 
-                if(hasIbu) {
-                    headingIbu.style.display = 'block';
-                    containerIbu.style.display = 'grid';
-                }
+            if(hasIbu) {
+                headingIbu.style.display = 'block';
+                containerIbu.style.display = 'grid';
+            }
 
             } catch (error) {
                 // Show error message in Utama container as fallback
