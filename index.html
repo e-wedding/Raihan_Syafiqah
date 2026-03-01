@@ -1370,102 +1370,172 @@
         // URL Google Apps Script anda telah dimasukkan di sini
         const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby4bUqn4aYeOPKlQED-xVktCmGA0JWgtXZ1vq2kPkw1zRBrWEemslSx6yRdfkEuloek/exec';
 
+        // ========================================
+        // OPTIMIZED DATA LOADING WITH CACHE
+        // ========================================
+
         // 1. Fetch dan paparkan ucapan apabila web dibuka
         async function loadWishes() {
             const container = document.getElementById('wishesContainer');
             try {
                 const response = await fetch(WEB_APP_URL);
-                
+
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                
-                // --- PERUBAHAN PENTING DI SINI ---
+
+                // OPTIMIZATION: Receive compressed keys (w = wishes, c = contacts)
                 const data = await response.json();
-                const wishes = data.wishes; // Ekstrak bahagian 'wishes' sahaja dari pangkalan data gabungan
+                const wishes = data.w; // 'w' = wishes (compressed key)
 
                 container.innerHTML = ''; // Kosongkan loading spinner
 
                 if (!wishes || wishes.length === 0) {
-                    container.innerHTML = '<p class="text-center text-xs italic text-[var(--text-charcoal-soft)]">Jadilah orang pertama yang mendoakan pasangan ini.</p>';
+                    container.innerHTML = '<p class="text-center text-sm italic text-[var(--text-charcoal-soft)]">Jadilah orang pertama yang mendoakan pasangan ini.</p>';
                     return;
                 }
 
                 wishes.forEach(wish => {
                     const wishCard = document.createElement('div');
                     wishCard.className = 'bg-white p-5 rounded-2xl shadow-sm border border-gray-50 transition-all hover:shadow-md';
+                    
+                    // OPTIMIZATION: Format date on client side (faster than GAS)
+                    const dateObj = new Date(wish.t);
+                    const formattedDate = dateObj.toLocaleDateString('ms-MY', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                    });
+                    
                     wishCard.innerHTML = `
                         <div class="flex justify-between items-center mb-2">
-                            <span class="font-bold text-sm" style="color: var(--text-charcoal);">${wish.nama}</span>
-                            <span class="text-[0.65rem] tracking-wider uppercase" style="color: var(--text-charcoal-soft);">${wish.tarikh}</span>
+                            <span class="font-bold text-sm" style="color: var(--text-charcoal);">${wish.n}</span>
+                            <span class="text-xs tracking-wider uppercase" style="color: var(--text-charcoal-soft);">${formattedDate}</span>
                         </div>
-                        <p class="text-sm font-light leading-relaxed" style="color: var(--text-charcoal-light);">${wish.ucapan}</p>
+                        <p class="text-sm font-light leading-relaxed" style="color: var(--text-charcoal-light);">${wish.u}</p>
                     `;
                     container.appendChild(wishCard);
                 });
             } catch (error) {
                 container.innerHTML = `
                     <div class="text-center py-4">
-                        <p class="text-xs text-red-400 mb-2">Gagal memuatkan ucapan.</p>
-                        <p class="text-[0.6rem] text-gray-400">Pastikan Google Apps Script Web App sudah di-deploy dengan betul.</p>
+                        <p class="text-sm text-red-400 mb-2">Gagal memuatkan ucapan.</p>
+                        <p class="text-xs text-gray-400">Pastikan Google Apps Script Web App sudah di-deploy dengan betul.</p>
                     </div>
                 `;
             }
         }
 
         // --- SISTEM KENALAN (CONTACTS) ---
-        // URL Google Apps Script untuk kenalan (sama dengan wishes atau berbeza ikut keperluan)
         const CONTACTS_URL = 'https://script.google.com/macros/s/AKfycby4bUqn4aYeOPKlQED-xVktCmGA0JWgtXZ1vq2kPkw1zRBrWEemslSx6yRdfkEuloek/exec';
-        
+
+        // OPTIMIZATION: Cache contacts in localStorage (instant reload on return visits)
+        function getCachedContacts() {
+            const cached = localStorage.getItem('wedding_contacts');
+            if (cached) {
+                const { data, timestamp } = JSON.parse(cached);
+                // Cache valid for 24 hours
+                const isExpired = Date.now() - timestamp > 24 * 60 * 60 * 1000;
+                if (!isExpired) {
+                    return data;
+                }
+            }
+            return null;
+        }
+
+        function cacheContacts(contacts) {
+            localStorage.setItem('wedding_contacts', JSON.stringify({
+                data: contacts,
+                timestamp: Date.now()
+            }));
+        }
+
         // Load contacts from Google Sheets
         async function loadData() {
             try {
-                const response = await fetch(CONTACTS_URL);
-                const data = await response.json();
-
-                // --- 1. PROSES DATA KENALAN ---
-                const containerUtama = document.getElementById('container-utama');
-                const containerBapa = document.getElementById('container-bapa');
-                const containerIbu = document.getElementById('container-ibu');
-                const headingBapa = document.getElementById('heading-bapa');
-                const headingIbu = document.getElementById('heading-ibu');
-
-                containerUtama.innerHTML = '';
-                containerBapa.innerHTML = '';
-                containerIbu.innerHTML = '';
-
-                let hasUtama = false;
-                let hasBapa = false;
-                let hasIbu = false;
-
-                data.contacts.forEach(contact => {
-                    // UI Kad Moden dengan Kaca (Glassmorphism)
-                    const btnHTML = `
-                        <a href="${contact.pautan}" target="_blank" class="bg-white/50 backdrop-blur-md rounded-2xl p-4 flex flex-col items-center justify-center border border-white/70 shadow-sm transition-all hover:shadow-md hover:-translate-y-1 w-full text-center group">
-                            <span class="block text-xs tracking-widest uppercase font-bold mb-1 group-hover:text-[#B89528] transition-colors duration-300" style="color: var(--text-charcoal);">${contact.nama}</span>
-                            <span class="block text-[0.6rem] uppercase tracking-[0.2em] mb-4" style="color: var(--text-charcoal-soft);">${contact.peranan}</span>
-
-                            <div class="flex items-center justify-center gap-2 bg-white/60 py-1.5 px-3 rounded-full border border-white/80 w-full max-w-[140px]">
-                                <i class="fab fa-whatsapp text-base" style="color: #25D366;"></i>
-                                <span class="text-[0.65rem] tracking-widest font-medium" style="color: var(--text-charcoal);">${contact.paparan}</span>
-                            </div>
-                        </a>
-                    `;
-
-                    // Susun ikut kategori dari Google Sheet
-                    if(contact.kategori === 'Utama' || contact.kategori === 'Pengantin') {
-                        containerUtama.innerHTML += btnHTML;
-                        hasUtama = true;
+                // OPTIMIZATION: Try cache first for instant load
+                const cachedContacts = getCachedContacts();
+                
+                if (cachedContacts) {
+                    // Use cached data immediately
+                    processContacts(cachedContacts);
+                    // Still fetch fresh data in background
+                    const response = await fetch(CONTACTS_URL);
+                    const data = await response.json();
+                    if (data.c && data.c.length > 0) {
+                        cacheContacts(data.c);
+                        processContacts(data.c);
                     }
-                    else if(contact.kategori === 'Wakil Keluarga (Sebelah Bapa)') {
-                        containerBapa.innerHTML += btnHTML;
-                        hasBapa = true;
+                } else {
+                    // No cache - fetch from server
+                    const response = await fetch(CONTACTS_URL);
+                    const data = await response.json();
+                    
+                    if (data.c && data.c.length > 0) {
+                        cacheContacts(data.c);
+                        processContacts(data.c);
                     }
-                    else if(contact.kategori === 'Wakil Keluarga (Sebelah Ibu)') {
-                        containerIbu.innerHTML += btnHTML;
-                        hasIbu = true;
+                }
+            } catch (error) {
+                console.error('Error loading contacts:', error);
+            }
+        }
+
+        // OPTIMIZATION: Separated processing logic for reusability
+        function processContacts(contacts) {
+            const containerUtama = document.getElementById('container-utama');
+            const containerBapa = document.getElementById('container-bapa');
+            const containerIbu = document.getElementById('container-ibu');
+            const headingBapa = document.getElementById('heading-bapa');
+            const headingIbu = document.getElementById('heading-ibu');
+
+            containerUtama.innerHTML = '';
+            containerBapa.innerHTML = '';
+            containerIbu.innerHTML = '';
+
+            let hasUtama = false;
+            let hasBapa = false;
+            let hasIbu = false;
+
+            contacts.forEach(contact => {
+                // OPTIMIZATION: Build WhatsApp link on client side (faster than GAS)
+                let pautan = '';
+                if (contact.a) {
+                    const cleanNum = String(contact.a).replace(/\D/g, '');
+                    if (cleanNum.startsWith('0')) {
+                        pautan = 'https://wa.me/60' + cleanNum.substring(1);
+                    } else {
+                        pautan = 'https://wa.me/' + cleanNum;
                     }
-                });
+                }
+                
+                // UI Kad Moden dengan Kaca (Glassmorphism)
+                const btnHTML = `
+                    <a href="${pautan}" target="_blank" class="bg-white/50 backdrop-blur-md rounded-2xl p-4 flex flex-col items-center justify-center border border-white/70 shadow-sm transition-all hover:shadow-md hover:-translate-y-1 w-full text-center group">
+                        <span class="block text-xs tracking-widest uppercase font-bold mb-1 group-hover:text-[#B89528] transition-colors duration-300" style="color: var(--text-charcoal);">${contact.n}</span>
+                        <span class="block text-xs uppercase tracking-[0.2em] mb-4" style="color: var(--text-charcoal-soft);">${contact.p}</span>
+
+                        <div class="flex items-center justify-center gap-2 bg-white/60 py-2 px-4 rounded-full border border-white/80 w-full max-w-[160px]">
+                            <i class="fab fa-whatsapp text-lg" style="color: #25D366;"></i>
+                            <span class="text-sm tracking-widest font-medium" style="color: var(--text-charcoal);">${contact.a}</span>
+                        </div>
+                    </a>
+                `;
+
+                // Susun ikut kategori dari Google Sheet
+                if(contact.k === 'Utama' || contact.k === 'Pengantin') {
+                    containerUtama.innerHTML += btnHTML;
+                    hasUtama = true;
+                }
+                else if(contact.k === 'Wakil Keluarga (Sebelah Bapa)') {
+                    containerBapa.innerHTML += btnHTML;
+                    hasBapa = true;
+                }
+                else if(contact.k === 'Wakil Keluarga (Sebelah Ibu)') {
+                    containerIbu.innerHTML += btnHTML;
+                    hasIbu = true;
+                }
+            });
 
                 // Show/hide grid container bergantung pada wujudnya data (Ini menghilangkan jurang besar!)
                 if(hasUtama) containerUtama.style.display = 'grid';
@@ -1486,7 +1556,7 @@
                 if (containerUtama) {
                     containerUtama.style.display = 'block';
                     containerUtama.innerHTML =
-                        '<p class="text-center text-xs italic col-span-full py-4" style="color:var(--text-charcoal-soft);">Maklumat kenalan tidak dapat dimuatkan.</p>';
+                        '<p class="text-center text-sm italic col-span-full py-4" style="color:var(--text-charcoal-soft);">Maklumat kenalan tidak dapat dimuatkan.</p>';
                 }
             }
         }
@@ -1494,11 +1564,11 @@
         // 2. Kendalikan penghantaran form (Submit)
         document.getElementById('wishForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
+
             const btnSubmit = document.getElementById('btnSubmitWish');
             const btnText = document.getElementById('btnText');
             const btnSpinner = document.getElementById('btnSpinner');
-            
+
             // UX Loading State
             btnSubmit.disabled = true;
             btnText.innerText = 'Menghantar...';
@@ -1517,24 +1587,27 @@
                     body: JSON.stringify(data)
                 });
 
-                // Bersihkan form
-                document.getElementById('wishForm').reset();
-                
-                // Mesej Kejayaan
-                btnText.innerText = 'Berjaya Dihantar!';
-                setTimeout(() => {
-                    btnText.innerText = 'Hantar Ucapan';
-                    btnSubmit.disabled = false;
-                    // Muat semula senarai ucapan secara automatik selepas delay
-                    loadWishes();
-                }, 3500);
-                
-            } catch (error) {
-                alert('Terdapat ralat rangkaian. Sila cuba lagi.');
-                btnSubmit.disabled = false;
-                btnText.innerText = 'Hantar Ucapan';
-            } finally {
+                // OPTIMIZATION: Clear wishes cache to force refresh
+                localStorage.removeItem('wedding_contacts');
+
+                // UX Success State
+                btnText.innerText = 'Terkirim!';
                 btnSpinner.classList.add('hidden');
+
+                // Reset form
+                document.getElementById('wishForm').reset();
+
+                // Reload wishes to show new entry
+                setTimeout(() => {
+                    loadWishes();
+                    btnSubmit.disabled = false;
+                    btnText.innerText = 'Hantar Ucapan';
+                }, 1000);
+
+            } catch (error) {
+                btnText.innerText = 'Gagal - Cuba Lagi';
+                btnSpinner.classList.add('hidden');
+                btnSubmit.disabled = false;
             }
         });
 
