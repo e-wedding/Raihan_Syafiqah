@@ -420,6 +420,92 @@
         .animate-breathe {
             animation: gentle-breathe 3s ease-in-out infinite;
         }
+
+        /* --- Timeline Dot Animations --- */
+        .timeline-dot {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .timeline-dot.gold {
+            animation: pulse-gold-dot 2s ease-in-out infinite;
+        }
+
+        .timeline-dot.default {
+            animation: pulse-soft-dot 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-gold-dot {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 15px rgba(212,175,55,0.6);
+            }
+            50% {
+                transform: scale(1.15);
+                box-shadow: 0 0 25px rgba(212,175,55,0.9), 0 0 40px rgba(212,175,55,0.4);
+            }
+        }
+
+        @keyframes pulse-soft-dot {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 10px rgba(107, 123, 95, 0.2);
+            }
+            50% {
+                transform: scale(1.08);
+                box-shadow: 0 0 18px rgba(107, 123, 95, 0.4);
+            }
+        }
+
+        /* Hover/Touch Interaction */
+        .group:hover .timeline-dot {
+            transform: scale(1.4);
+        }
+
+        .group:hover .timeline-dot.gold {
+            box-shadow: 0 0 30px rgba(212,175,55,1), 0 0 60px rgba(212,175,55,0.5);
+            animation: none;
+        }
+
+        .group:hover .timeline-dot.default {
+            background: var(--accent-gold);
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 25px rgba(212,175,55,0.8), 0 0 45px rgba(212,175,55,0.4);
+            animation: none;
+        }
+
+        /* Ripple effect on hover */
+        .timeline-dot::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-gold);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.4s ease-out;
+        }
+
+        .group:hover .timeline-dot::before {
+            animation: ripple 0.6s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0.5);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1.8);
+                opacity: 0;
+            }
+        }
+
+        /* Mobile touch support */
+        @media (hover: none) {
+            .group:active .timeline-dot {
+                transform: scale(1.4);
+            }
+        }
     </style>
 </head>
 <body>
@@ -550,31 +636,64 @@
                 <!-- Tentatif Program -->
                 <div id="tentatif-section" class="reveal-item my-16 md:my-20 max-w-3xl mx-auto px-2 md:px-4">
                     <h4 class="font-cinzel text-center text-sm md:text-base font-bold tracking-[0.3em] mb-8 md:mb-12 uppercase" style="color: var(--text-gold);">Tentatif Majlis</h4>
-                    
+
                     <div class="elegant-panel relative !px-5 !py-8 md:!px-12 md:!py-12">
-                        <div class="absolute left-8 md:left-1/2 top-12 bottom-12 w-px md:-translate-x-1/2" style="background: linear-gradient(to bottom, transparent, var(--accent-gold), var(--accent-gold), transparent); opacity: 0.5;"></div>
-                        
+                        <div class="absolute left-6 md:left-1/2 top-8 bottom-8 w-px md:-translate-x-1/2" style="background: linear-gradient(to bottom, transparent, var(--accent-gold), var(--accent-gold), transparent); opacity: 0.5;"></div>
+
                         <div class="flex flex-col gap-10">
-                            
+
                             <div class="relative flex flex-col md:flex-row items-start md:items-center w-full group">
                                 <div class="md:w-1/2 md:text-right md:pr-10 mb-1 md:mb-0 order-2 md:order-1 pl-12 md:pl-0">
-                                    <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">10:00 Pagi</h5>
+                                    <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">9:00 Pagi</h5>
                                 </div>
-                                <div class="absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 mt-1 md:mt-0 z-10 transition-all duration-300" style="background: var(--bg-ivory-dark); border-color: var(--accent-olive); box-shadow: 0 0 10px rgba(107, 123, 95, 0.2);"></div>
+                                <div class="timeline-dot gold absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--accent-gold); border-color: var(--accent-gold);"></div>
                                 <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
-                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Ketibaan Tetamu</p>
-                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Jamuan makan bermula</p>
+                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Majlis Nikah</p>
+                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Akad nikah mempelai</p>
                                 </div>
                             </div>
 
                             <div class="relative flex flex-col md:flex-row items-start md:items-center w-full group">
                                 <div class="md:w-1/2 md:text-right md:pr-10 mb-1 md:mb-0 order-2 md:order-1 pl-12 md:pl-0">
-                                    <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">12:30 T/Hari</h5>
+                                    <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">9:30 Pagi</h5>
                                 </div>
-                                <div class="absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 mt-1 md:mt-0 z-10 transition-all duration-300" style="background: var(--accent-gold); border-color: var(--accent-gold); box-shadow: 0 0 15px rgba(212,175,55,0.6);"></div>
+                                <div class="timeline-dot default absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--bg-ivory-dark); border-color: var(--accent-olive);"></div>
                                 <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
-                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Ketibaan Mempelai</p>
-                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Majlis bersanding</p>
+                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Majlis Bersanding</p>
+                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Pertemuan mempelai di pelamin</p>
+                                </div>
+                            </div>
+
+                            <div class="relative flex flex-col md:flex-row items-start md:items-center w-full group">
+                                <div class="md:w-1/2 md:text-right md:pr-10 mb-1 md:mb-0 order-2 md:order-1 pl-12 md:pl-0">
+                                    <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">10:00 Pagi</h5>
+                                </div>
+                                <div class="timeline-dot default absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--bg-ivory-dark); border-color: var(--accent-olive);"></div>
+                                <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
+                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Pertukaran Pakaian</p>
+                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Mempelai bertukar ke pakaian Songket</p>
+                                </div>
+                            </div>
+
+                            <div class="relative flex flex-col md:flex-row items-start md:items-center w-full group">
+                                <div class="md:w-1/2 md:text-right md:pr-10 mb-1 md:mb-0 order-2 md:order-1 pl-12 md:pl-0">
+                                    <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">10:30 Pagi</h5>
+                                </div>
+                                <div class="timeline-dot default absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--bg-ivory-dark); border-color: var(--accent-olive);"></div>
+                                <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
+                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Majlis Merenjis</p>
+                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Tradisi merenjis</p>
+                                </div>
+                            </div>
+
+                            <div class="relative flex flex-col md:flex-row items-start md:items-center w-full group">
+                                <div class="md:w-1/2 md:text-right md:pr-10 mb-1 md:mb-0 order-2 md:order-1 pl-12 md:pl-0">
+                                    <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">12:00 T/Hari</h5>
+                                </div>
+                                <div class="timeline-dot default absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--bg-ivory-dark); border-color: var(--accent-olive);"></div>
+                                <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
+                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Solat Zohor & Pertukaran Pakaian</p>
+                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Rehat untuk solat berjemaah</p>
                                 </div>
                             </div>
 
@@ -582,20 +701,54 @@
                                 <div class="md:w-1/2 md:text-right md:pr-10 mb-1 md:mb-0 order-2 md:order-1 pl-12 md:pl-0">
                                     <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">1:00 Petang</h5>
                                 </div>
-                                <div class="absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 mt-1 md:mt-0 z-10 transition-all duration-300" style="background: var(--bg-ivory-dark); border-color: var(--accent-olive); box-shadow: 0 0 10px rgba(107, 123, 95, 0.2);"></div>
+                                <div class="timeline-dot default absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--bg-ivory-dark); border-color: var(--accent-olive);"></div>
                                 <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
-                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Makan Beradab</p>
+                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Majlis Bersanding</p>
+                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Mempelai di pelamin</p>
                                 </div>
                             </div>
 
                             <div class="relative flex flex-col md:flex-row items-start md:items-center w-full group">
                                 <div class="md:w-1/2 md:text-right md:pr-10 mb-1 md:mb-0 order-2 md:order-1 pl-12 md:pl-0">
-                                    <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">2:00 Petang</h5>
+                                    <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">3:00 Petang</h5>
                                 </div>
-                                <div class="absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 mt-1 md:mt-0 z-10 transition-all duration-300" style="background: var(--bg-ivory-dark); border-color: var(--accent-olive); box-shadow: 0 0 10px rgba(107, 123, 95, 0.2);"></div>
+                                <div class="timeline-dot default absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--bg-ivory-dark); border-color: var(--accent-olive);"></div>
                                 <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
-                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Sesi Bergambar</p>
-                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Bersama keluarga & rakan</p>
+                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Majlis Memotong Kek</p>
+                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Detik manis mempelai</p>
+                                </div>
+                            </div>
+
+                            <div class="relative flex flex-col md:flex-row items-start md:items-center w-full group">
+                                <div class="md:w-1/2 md:text-right md:pr-10 mb-1 md:mb-0 order-2 md:order-1 pl-12 md:pl-0">
+                                    <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">4:30 Petang</h5>
+                                </div>
+                                <div class="timeline-dot default absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--bg-ivory-dark); border-color: var(--accent-olive);"></div>
+                                <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
+                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Sesi Bergambar Keluarga</p>
+                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Kenangan bersama insan tersayang</p>
+                                </div>
+                            </div>
+
+                            <div class="relative flex flex-col md:flex-row items-start md:items-center w-full group">
+                                <div class="md:w-1/2 md:text-right md:pr-10 mb-1 md:mb-0 order-2 md:order-1 pl-12 md:pl-0">
+                                    <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">5:00 Petang</h5>
+                                </div>
+                                <div class="timeline-dot default absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--bg-ivory-dark); border-color: var(--accent-olive);"></div>
+                                <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
+                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Majlis Berakhir</p>
+                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Sekian, terima kasih</p>
+                                </div>
+                            </div>
+
+                            <div class="relative flex flex-col md:flex-row items-start md:items-center w-full group">
+                                <div class="md:w-1/2 md:text-right md:pr-10 mb-1 md:mb-0 order-2 md:order-1 pl-12 md:pl-0">
+                                    <h5 class="font-playfair text-lg md:text-xl font-semibold" style="color: var(--text-charcoal);">7:00 Malam</h5>
+                                </div>
+                                <div class="timeline-dot gold absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--accent-gold); border-color: var(--accent-gold);"></div>
+                                <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
+                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Sesi Outdoor & Bunga Api</p>
+                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Penutup yang indah</p>
                                 </div>
                             </div>
 
@@ -641,26 +794,26 @@
                 </div>
 
                 <!-- Countdown Section -->
-                <div class="reveal-item my-16 md:my-20 max-w-3xl mx-auto px-2 md:px-4">
-                    <div class="elegant-panel gold-accent !px-5 !py-8 md:!p-10">
-                        <h4 class="font-cinzel text-sm md:text-base font-bold tracking-[0.3em] mb-6 md:mb-8 uppercase text-center" style="color: var(--text-gold);">Menghitung Hari</h4>
+                <div class="reveal-item my-16 md:my-20 max-w-4xl mx-auto px-4 md:px-6">
+                    <div class="elegant-panel gold-accent !px-6 !py-10 md:!px-12 md:!py-14">
+                        <h4 class="font-cinzel text-xs md:text-sm font-bold tracking-[0.35em] mb-8 md:mb-10 uppercase text-center" style="color: var(--text-gold);">Menghitung Hari</h4>
                         
-                        <div class="grid grid-cols-4 gap-2 md:gap-4">
-                            <div class="bg-white/70 rounded-2xl p-3 md:p-6 text-center border border-white shadow-sm backdrop-blur-sm">
-                                <span id="days" class="font-playfair text-xl md:text-4xl font-semibold block mb-1" style="color: var(--text-charcoal);">00</span>
-                                <p class="font-cinzel text-[0.55rem] md:text-xs uppercase tracking-widest" style="color: var(--text-gold);">Hari</p>
+                        <div class="grid grid-cols-2 gap-4 md:gap-6">
+                            <div class="bg-white/80 rounded-3xl p-5 md:p-8 text-center border border-white/80 shadow-lg backdrop-blur-md hover:shadow-xl transition-shadow duration-300">
+                                <span id="days" class="font-playfair text-4xl md:text-6xl font-semibold block mb-2" style="color: var(--text-charcoal);">00</span>
+                                <p class="font-cinzel text-xs md:text-sm uppercase tracking-[0.25em]" style="color: var(--text-gold);">Hari</p>
                             </div>
-                            <div class="bg-white/70 rounded-2xl p-3 md:p-6 text-center border border-white shadow-sm backdrop-blur-sm">
-                                <span id="hours" class="font-playfair text-xl md:text-4xl font-semibold block mb-1" style="color: var(--text-charcoal);">00</span>
-                                <p class="font-cinzel text-[0.55rem] md:text-xs uppercase tracking-widest" style="color: var(--text-gold);">Jam</p>
+                            <div class="bg-white/80 rounded-3xl p-5 md:p-8 text-center border border-white/80 shadow-lg backdrop-blur-md hover:shadow-xl transition-shadow duration-300">
+                                <span id="hours" class="font-playfair text-4xl md:text-6xl font-semibold block mb-2" style="color: var(--text-charcoal);">00</span>
+                                <p class="font-cinzel text-xs md:text-sm uppercase tracking-[0.25em]" style="color: var(--text-gold);">Jam</p>
                             </div>
-                            <div class="bg-white/70 rounded-2xl p-3 md:p-6 text-center border border-white shadow-sm backdrop-blur-sm">
-                                <span id="mins" class="font-playfair text-xl md:text-4xl font-semibold block mb-1" style="color: var(--text-charcoal);">00</span>
-                                <p class="font-cinzel text-[0.55rem] md:text-xs uppercase tracking-widest" style="color: var(--text-gold);">Minit</p>
+                            <div class="bg-white/80 rounded-3xl p-5 md:p-8 text-center border border-white/80 shadow-lg backdrop-blur-md hover:shadow-xl transition-shadow duration-300">
+                                <span id="mins" class="font-playfair text-4xl md:text-6xl font-semibold block mb-2" style="color: var(--text-charcoal);">00</span>
+                                <p class="font-cinzel text-xs md:text-sm uppercase tracking-[0.25em]" style="color: var(--text-gold);">Minit</p>
                             </div>
-                            <div class="bg-white/70 rounded-2xl p-3 md:p-6 text-center border border-white shadow-sm backdrop-blur-sm">
-                                <span id="secs" class="font-playfair text-xl md:text-4xl font-semibold block mb-1" style="color: var(--text-charcoal);">00</span>
-                                <p class="font-cinzel text-[0.55rem] md:text-xs uppercase tracking-widest" style="color: var(--text-gold);">Saat</p>
+                            <div class="bg-white/80 rounded-3xl p-5 md:p-8 text-center border border-white/80 shadow-lg backdrop-blur-md hover:shadow-xl transition-shadow duration-300">
+                                <span id="secs" class="font-playfair text-4xl md:text-6xl font-semibold block mb-2" style="color: var(--text-charcoal);">00</span>
+                                <p class="font-cinzel text-xs md:text-sm uppercase tracking-[0.25em]" style="color: var(--text-gold);">Saat</p>
                             </div>
                         </div>
                     </div>
