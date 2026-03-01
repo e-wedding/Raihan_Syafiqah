@@ -40,8 +40,8 @@
             --bg-ivory: #FDFBF7;
             --bg-ivory-dark: #F5F0E6;
             --text-charcoal: #2B2B2B;
-            --text-charcoal-light: #4A4A4A;
-            --text-charcoal-soft: #6B6B6B;
+            --text-charcoal-light: #3A3A3A;
+            --text-charcoal-soft: #555555;
             --accent-gold: #D4AF37;
             --accent-gold-light: #E8C547;
             --text-gold: #B89528;
@@ -214,11 +214,12 @@
             border-radius: 100px;
             font-weight: 600;
             text-decoration: none;
-            padding: 1rem 2rem;
-            font-size: 0.75rem;
+            padding: 1.25rem 2rem;
+            font-size: 0.8rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            min-height: 48px;
         }
 
         .elegant-button:hover {
@@ -244,6 +245,18 @@
             color: var(--text-gold);
             transform: scale(0.98);
             border-color: var(--text-gold);
+        }
+
+        /* --- FOCUS VISIBLE FOR ACCESSIBILITY --- */
+        .elegant-button:focus-visible,
+        .glass-button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible,
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--accent-gold);
+            outline-offset: 2px;
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
         }
 
         /* --- MAIN INTERIOR --- */
@@ -701,7 +714,7 @@
                 </div>
 
                 <!-- Greeting -->
-                <div class="reveal-item text-center text-xs md:text-sm tracking-widest uppercase leading-loose mb-10 md:mb-14 font-light" style="color: var(--text-charcoal-light);">
+                <div class="reveal-item text-center text-sm md:text-base tracking-widest uppercase leading-loose mb-10 md:mb-14 font-light" style="color: var(--text-charcoal-light);">
                     Assalamualaikum Warahmatullahi Wabarakatuh<br>
                     & Salam Sejahtera
                 </div>
@@ -724,7 +737,7 @@
                 <!-- Invitation Text -->
                 <div class="reveal-item text-center mb-16">
                     <div class="ornament-divider"></div>
-                    <p class="text-xs md:text-sm font-light leading-loose tracking-wide max-w-xl mx-auto px-2 mt-8" style="color: var(--text-charcoal-soft);">
+                    <p class="text-sm md:text-base font-light leading-loose tracking-wide max-w-xl mx-auto px-4 mt-8" style="color: var(--text-charcoal-soft);">
                         Dengan penuh hormat dan takzimnya, kami menjemput<br>
                         Dato' / Datin / Tuan / Puan / Encik / Cik <br>
                         serta seisi keluarga ke majlis perkahwinan puteri kami
@@ -753,7 +766,7 @@
                         <!-- Bride Card -->
                         <div class="square-card square-card-bride">
                             <div class="square-card-image-container">
-                                <img src="Picture/Pengantin/Syafiqah.png" alt="Pengantin Perempuan" class="square-card-image">
+                                <img src="Picture/Pengantin/Syafiqah.png" alt="Pengantin Perempuan" class="square-card-image" loading="lazy">
                             </div>
                             <div class="square-card-content">
                                 <div class="square-card-ornament"></div>
@@ -765,7 +778,7 @@
                         <!-- Groom Card -->
                         <div class="square-card square-card-groom">
                             <div class="square-card-image-container">
-                                <img src="Picture/Pengantin/Raihan.png" alt="Pengantin Lelaki" class="square-card-image">
+                                <img src="Picture/Pengantin/Raihan.png" alt="Pengantin Lelaki" class="square-card-image" loading="lazy">
                             </div>
                             <div class="square-card-content">
                                 <div class="square-card-ornament"></div>
@@ -779,7 +792,7 @@
                 <div class="reveal-item ornament-divider mb-16"></div>
 
                 <!-- Tentatif Program -->
-                <div id="tentatif-section" class="reveal-item my-16 md:my-20 max-w-3xl mx-auto px-2 md:px-4">
+                <div id="tentatif-section" class="reveal-item my-16 md:my-20 max-w-3xl mx-auto px-4 md:px-6">
                     <h4 class="font-cinzel text-center text-sm md:text-base font-bold tracking-[0.3em] mb-8 md:mb-12 uppercase" style="color: var(--text-gold);">Tentatif Majlis</h4>
 
                     <div class="elegant-panel relative !px-5 !py-8 md:!px-12 md:!py-12">
@@ -793,8 +806,8 @@
                                 </div>
                                 <div class="timeline-dot gold absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--accent-gold); border-color: var(--accent-gold);"></div>
                                 <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
-                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Majlis Nikah</p>
-                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Akad nikah mempelai</p>
+                                    <p class="text-sm md:text-base tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Majlis Nikah</p>
+                                    <p class="text-xs md:text-sm italic mt-1" style="color: var(--text-charcoal-soft);">Akad nikah mempelai</p>
                                 </div>
                             </div>
 
@@ -804,8 +817,8 @@
                                 </div>
                                 <div class="timeline-dot default absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--bg-ivory-dark); border-color: var(--accent-olive);"></div>
                                 <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
-                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Majlis Bersanding</p>
-                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Pertemuan mempelai di pelamin</p>
+                                    <p class="text-sm md:text-base tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Majlis Bersanding</p>
+                                    <p class="text-xs md:text-sm italic mt-1" style="color: var(--text-charcoal-soft);">Pertemuan mempelai di pelamin</p>
                                 </div>
                             </div>
 
@@ -815,8 +828,8 @@
                                 </div>
                                 <div class="timeline-dot default absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--bg-ivory-dark); border-color: var(--accent-olive);"></div>
                                 <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
-                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Pertukaran Pakaian</p>
-                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Mempelai bertukar ke pakaian Songket</p>
+                                    <p class="text-sm md:text-base tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Pertukaran Pakaian</p>
+                                    <p class="text-xs md:text-sm italic mt-1" style="color: var(--text-charcoal-soft);">Mempelai bertukar ke pakaian Songket</p>
                                 </div>
                             </div>
 
@@ -826,8 +839,8 @@
                                 </div>
                                 <div class="timeline-dot default absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--bg-ivory-dark); border-color: var(--accent-olive);"></div>
                                 <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
-                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Majlis Merenjis</p>
-                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Tradisi merenjis</p>
+                                    <p class="text-sm md:text-base tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Majlis Merenjis</p>
+                                    <p class="text-xs md:text-sm italic mt-1" style="color: var(--text-charcoal-soft);">Tradisi merenjis</p>
                                 </div>
                             </div>
 
@@ -837,8 +850,8 @@
                                 </div>
                                 <div class="timeline-dot default absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--bg-ivory-dark); border-color: var(--accent-olive);"></div>
                                 <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
-                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Solat Zohor & Pertukaran Pakaian</p>
-                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Rehat untuk solat berjemaah</p>
+                                    <p class="text-sm md:text-base tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Solat Zohor & Pertukaran Pakaian</p>
+                                    <p class="text-xs md:text-sm italic mt-1" style="color: var(--text-charcoal-soft);">Rehat untuk solat berjemaah</p>
                                 </div>
                             </div>
 
@@ -848,8 +861,8 @@
                                 </div>
                                 <div class="timeline-dot default absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--bg-ivory-dark); border-color: var(--accent-olive);"></div>
                                 <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
-                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Majlis Bersanding</p>
-                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Mempelai di pelamin</p>
+                                    <p class="text-sm md:text-base tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Pertukaran Pakaian</p>
+                                    <p class="text-xs md:text-sm italic mt-1" style="color: var(--text-charcoal-soft);">Mempelai di pelamin</p>
                                 </div>
                             </div>
 
@@ -859,8 +872,8 @@
                                 </div>
                                 <div class="timeline-dot default absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--bg-ivory-dark); border-color: var(--accent-olive);"></div>
                                 <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
-                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Majlis Memotong Kek</p>
-                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Detik manis mempelai</p>
+                                    <p class="text-sm md:text-base tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Majlis Memotong Kek</p>
+                                    <p class="text-xs md:text-sm italic mt-1" style="color: var(--text-charcoal-soft);">Detik manis mempelai</p>
                                 </div>
                             </div>
 
@@ -870,8 +883,8 @@
                                 </div>
                                 <div class="timeline-dot default absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--bg-ivory-dark); border-color: var(--accent-olive);"></div>
                                 <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
-                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Sesi Bergambar Keluarga</p>
-                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Kenangan bersama insan tersayang</p>
+                                    <p class="text-sm md:text-base tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Sesi Bergambar Keluarga</p>
+                                    <p class="text-xs md:text-sm italic mt-1" style="color: var(--text-charcoal-soft);">Kenangan bersama insan tersayang</p>
                                 </div>
                             </div>
 
@@ -881,8 +894,8 @@
                                 </div>
                                 <div class="timeline-dot default absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--bg-ivory-dark); border-color: var(--accent-olive);"></div>
                                 <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
-                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Majlis Berakhir</p>
-                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Sekian, terima kasih</p>
+                                    <p class="text-sm md:text-base tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Majlis Berakhir</p>
+                                    <p class="text-xs md:text-sm italic mt-1" style="color: var(--text-charcoal-soft);">Sekian, terima kasih</p>
                                 </div>
                             </div>
 
@@ -892,8 +905,8 @@
                                 </div>
                                 <div class="timeline-dot gold absolute left-6 md:left-1/2 w-4 h-4 rounded-full border-2 md:-translate-x-1/2 md:mt-0 z-10 flex items-center justify-center" style="background: var(--accent-gold); border-color: var(--accent-gold);"></div>
                                 <div class="md:w-1/2 md:pl-10 order-3 md:order-2 pl-12 md:pl-0">
-                                    <p class="text-[0.65rem] md:text-sm tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Sesi Outdoor & Bunga Api</p>
-                                    <p class="text-[0.65rem] md:text-xs italic mt-1" style="color: var(--text-charcoal-soft);">Penutup yang indah</p>
+                                    <p class="text-sm md:text-base tracking-widest uppercase font-medium" style="color: var(--text-charcoal-light);">Sesi Outdoor & Bunga Api</p>
+                                    <p class="text-xs md:text-sm italic mt-1" style="color: var(--text-charcoal-soft);">Penutup yang indah</p>
                                 </div>
                             </div>
 
@@ -913,10 +926,10 @@
                 </div>
 
                 <!-- Location Section -->
-                <div id="lokasi-section" class="reveal-item my-16 md:my-20 max-w-3xl mx-auto px-2 md:px-4">
+                <div id="lokasi-section" class="reveal-item my-16 md:my-20 max-w-3xl mx-auto px-4 md:px-6">
                     <div class="elegant-panel text-center !px-5 !py-8 md:!p-10">
                         <h4 class="font-cinzel text-sm md:text-base font-bold tracking-[0.3em] mb-6 md:mb-8 uppercase" style="color: var(--text-gold);">Lokasi Majlis</h4>
-                        <p class="text-xs md:text-sm font-light leading-loose mb-6 px-2 uppercase tracking-wide" style="color: var(--text-charcoal);">
+                        <p class="text-sm md:text-base font-light leading-loose mb-6 px-4 uppercase tracking-wide" style="color: var(--text-charcoal);">
                             TB 9641, LOT 349, <br>
                             LORONG 10, <br>
                             TAMAN KINABUTAN RIA,<br>
@@ -924,14 +937,14 @@
                         </p>
 
                         <!-- Static Map Image -->
-                        <img src="Picture/Map.svg" alt="Peta Lokasi" class="w-full h-auto mb-4" style="border-radius: 20px;">
+                        <img src="Picture/Map.svg" alt="Peta Lokasi" class="w-full h-auto mb-4" style="border-radius: 20px;" loading="lazy">
 
                         <!-- Navigation Buttons -->
                         <div class="flex flex-col sm:flex-row gap-3 mt-6">
-                            <a href="https://waze.com/ul?ll=4.269511,117.955985&navigate=yes" target="_blank" class="elegant-button outline w-full justify-center text-[0.65rem] md:text-xs">
+                            <a href="https://waze.com/ul?ll=4.269511,117.955985&navigate=yes" target="_blank" class="elegant-button outline w-full justify-center text-sm md:text-base">
                                 <i class="fab fa-waze mr-2 md:mr-3 text-base"></i> Waze
                             </a>
-                            <a href="https://www.google.com/maps/search/?api=1&query=4.269511,117.955985" target="_blank" class="elegant-button outline w-full justify-center text-[0.65rem] md:text-xs">
+                            <a href="https://www.google.com/maps/search/?api=1&query=4.269511,117.955985" target="_blank" class="elegant-button outline w-full justify-center text-sm md:text-base">
                                 <i class="fas fa-map-marker-alt mr-2 md:mr-3 text-base"></i> Google Maps
                             </a>
                         </div>
@@ -939,26 +952,26 @@
                 </div>
 
                 <!-- Countdown Section -->
-                <div class="reveal-item my-16 md:my-20 max-w-4xl mx-auto px-4 md:px-6">
+                <div class="reveal-item my-16 md:my-20 max-w-4xl mx-auto px-6 md:px-8">
                     <div class="elegant-panel gold-accent !px-6 !py-10 md:!px-12 md:!py-14">
                         <h4 class="font-cinzel text-xs md:text-sm font-bold tracking-[0.35em] mb-8 md:mb-10 uppercase text-center" style="color: var(--text-gold);">Menghitung Hari</h4>
                         
                         <div class="grid grid-cols-2 gap-4 md:gap-6">
                             <div class="bg-white/80 rounded-3xl p-5 md:p-8 text-center border border-white/80 shadow-lg backdrop-blur-md hover:shadow-xl transition-shadow duration-300">
                                 <span id="days" class="font-playfair text-4xl md:text-6xl font-semibold block mb-2" style="color: var(--text-charcoal);">00</span>
-                                <p class="font-cinzel text-xs md:text-sm uppercase tracking-[0.25em]" style="color: var(--text-gold);">Hari</p>
+                                <p class="font-cinzel text-sm md:text-base uppercase tracking-[0.25em]" style="color: var(--text-gold);">Hari</p>
                             </div>
                             <div class="bg-white/80 rounded-3xl p-5 md:p-8 text-center border border-white/80 shadow-lg backdrop-blur-md hover:shadow-xl transition-shadow duration-300">
                                 <span id="hours" class="font-playfair text-4xl md:text-6xl font-semibold block mb-2" style="color: var(--text-charcoal);">00</span>
-                                <p class="font-cinzel text-xs md:text-sm uppercase tracking-[0.25em]" style="color: var(--text-gold);">Jam</p>
+                                <p class="font-cinzel text-sm md:text-base uppercase tracking-[0.25em]" style="color: var(--text-gold);">Jam</p>
                             </div>
                             <div class="bg-white/80 rounded-3xl p-5 md:p-8 text-center border border-white/80 shadow-lg backdrop-blur-md hover:shadow-xl transition-shadow duration-300">
                                 <span id="mins" class="font-playfair text-4xl md:text-6xl font-semibold block mb-2" style="color: var(--text-charcoal);">00</span>
-                                <p class="font-cinzel text-xs md:text-sm uppercase tracking-[0.25em]" style="color: var(--text-gold);">Minit</p>
+                                <p class="font-cinzel text-sm md:text-base uppercase tracking-[0.25em]" style="color: var(--text-gold);">Minit</p>
                             </div>
                             <div class="bg-white/80 rounded-3xl p-5 md:p-8 text-center border border-white/80 shadow-lg backdrop-blur-md hover:shadow-xl transition-shadow duration-300">
                                 <span id="secs" class="font-playfair text-4xl md:text-6xl font-semibold block mb-2" style="color: var(--text-charcoal);">00</span>
-                                <p class="font-cinzel text-xs md:text-sm uppercase tracking-[0.25em]" style="color: var(--text-gold);">Saat</p>
+                                <p class="font-cinzel text-sm md:text-base uppercase tracking-[0.25em]" style="color: var(--text-gold);">Saat</p>
                             </div>
                         </div>
                     </div>
@@ -993,21 +1006,21 @@
                 </div>
 
                 <!-- Buku Tetamu Section -->
-                <div id="ucapan-section" class="reveal-item my-16 md:my-20 max-w-2xl mx-auto px-2 md:px-4">
+                <div id="ucapan-section" class="reveal-item my-16 md:my-20 max-w-2xl mx-auto px-4 md:px-6">
                     
                     <h4 class="font-cinzel text-center text-sm md:text-base font-bold tracking-[0.3em] mb-8 md:mb-12 uppercase" style="color: var(--text-gold);">Buku Tetamu</h4>
                     
                     <div class="elegant-panel !px-5 !py-8 md:!p-10">
                         
-                        <p class="text-center text-[0.65rem] md:text-xs tracking-widest uppercase mb-8" style="color: var(--text-charcoal-light);">Tinggalkan Titipan Doa & Ucapan</p>
+                        <p class="text-center text-sm md:text-base tracking-widest uppercase mb-8" style="color: var(--text-charcoal-light);">Tinggalkan Titipan Doa & Ucapan</p>
                         
                         <form id="wishForm" class="flex flex-col gap-4 mb-10">
                             <input type="text" id="wishName" placeholder="Nama Anda" required
-                                class="w-full px-5 py-3 md:px-6 md:py-4 rounded-2xl outline-none text-sm shadow-sm transition-all duration-300 focus:ring-2 focus:ring-[var(--accent-gold)] bg-white/40 backdrop-blur-md border border-white/60"
+                                class="w-full px-5 py-3 md:px-6 md:py-4 rounded-2xl outline-none text-base shadow-sm transition-all duration-300 focus:ring-2 focus:ring-[var(--accent-gold)] bg-white/40 backdrop-blur-md border border-white/60"
                                 style="color: var(--text-charcoal);">
 
                             <textarea id="wishMessage" placeholder="Ucapan / Doa untuk pengantin..." required rows="3"
-                                class="w-full px-5 py-3 md:px-6 md:py-4 rounded-2xl outline-none text-sm shadow-sm transition-all duration-300 focus:ring-2 focus:ring-[var(--accent-gold)] resize-none bg-white/40 backdrop-blur-md border border-white/60"
+                                class="w-full px-5 py-3 md:px-6 md:py-4 rounded-2xl outline-none text-base shadow-sm transition-all duration-300 focus:ring-2 focus:ring-[var(--accent-gold)] resize-none bg-white/40 backdrop-blur-md border border-white/60"
                                 style="color: var(--text-charcoal);"></textarea>
 
                             <button type="submit" id="btnSubmitWish" class="elegant-button w-full mt-2">
@@ -1021,25 +1034,25 @@
                         <div id="wishesContainer" class="flex flex-col gap-4 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
                             <div class="text-center py-8">
                                 <i class="fas fa-spinner fa-spin text-2xl" style="color: var(--text-gold);"></i>
-                                <p class="text-[0.65rem] md:text-xs mt-4 tracking-widest uppercase" style="color: var(--text-charcoal-light);">Memuatkan Ucapan...</p>
+                                <p class="text-sm md:text-base mt-4 tracking-widest uppercase" style="color: var(--text-charcoal-light);">Memuatkan Ucapan...</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Closing Message -->
-                <div class="reveal-item mt-16 max-w-2xl mx-auto text-center px-4 pb-28">
+                <div class="reveal-item mt-16 max-w-2xl mx-auto text-center px-6 pb-28">
                     <div class="ornament-divider"></div>
                     
                     <p class="font-amiri text-2xl md:text-3xl mb-4 leading-[2.5]" style="color: var(--accent-gold); direction: rtl;">
                         بَارَكَ اللَّهُ لَكَ وَبَارَكَ عَلَيْكَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
                     </p>
                     
-                    <p class="text-[0.65rem] md:text-xs tracking-widest uppercase mb-6 font-medium" style="color: var(--text-charcoal-light);">
+                    <p class="text-sm md:text-base tracking-widest uppercase mb-6 font-medium" style="color: var(--text-charcoal-light);">
                         "Barakallahu laka wa baraka 'alaika wa jama'a bainakuma fii khair"
                     </p>
 
-                    <p class="text-xs md:text-sm font-light leading-relaxed italic font-playfair max-w-lg mx-auto" style="color: var(--text-charcoal-soft);">
+                    <p class="text-sm md:text-base font-light leading-relaxed italic font-playfair max-w-lg mx-auto" style="color: var(--text-charcoal-soft);">
                         "Semoga Allah memberkatimu di waktu bahagia dan memberkatimu di waktu susah, serta menghimpunkan kamu berdua dalam kebaikan."
                     </p>
                 </div>
